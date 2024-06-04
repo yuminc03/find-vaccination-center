@@ -98,6 +98,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8D03CA622C0F4F90004DEA36 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8D03CA632C0F4F9B004DEA36 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8D96140A2C0CAC62003B4BA9 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		8D03CA642C0F4FB1004DEA36 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				8D9614082C0CAC62003B4BA9 /* ContentView.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		8D03CA652C0F4FD4004DEA36 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				8D03CA662C0F4FDC004DEA36 /* Map */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
 		8D9613FA2C0CAC62003B4BA9 = {
 			isa = PBXGroup;
 			children = (
@@ -123,11 +155,12 @@
 		8D9614052C0CAC62003B4BA9 /* FindVaccineCenter */ = {
 			isa = PBXGroup;
 			children = (
+				8D03CA622C0F4F90004DEA36 /* App */,
+				8D03CA642C0F4FB1004DEA36 /* Scene */,
+				8D03CA652C0F4FD4004DEA36 /* DesignSystem */,
+				8D03CA632C0F4F9B004DEA36 /* Resource */,
 				8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */,
-				8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */,
 				8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */,
-				8D9614082C0CAC62003B4BA9 /* ContentView.swift */,
-				8D96140A2C0CAC62003B4BA9 /* Assets.xcassets */,
 				8D96140C2C0CAC62003B4BA9 /* Preview Content */,
 			);
 			path = FindVaccineCenter;
@@ -499,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -556,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -580,11 +613,14 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindVaccineCenter/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "앱이 백그라운드에서 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 실행중일 때 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -612,11 +648,14 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindVaccineCenter/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "앱이 백그라운드에서 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 실행중일 때 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -640,7 +679,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GMHUACJXLZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lonalia.FindVaccineCenterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -661,7 +700,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GMHUACJXLZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lonalia.FindVaccineCenterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
