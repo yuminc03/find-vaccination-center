@@ -14,6 +14,7 @@ struct RootView: View {
     ZStack {
       RepresentedNaverMap(locationError: $locationError)
         .ignoresSafeArea()
+      CenterFlag()
     }
   }
 }
