@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct FindVaccineCenterApp: App {
-    var body: some Scene {
-        WindowGroup {
-            RootView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      RootView(store: .init(initialState: RootCore.State()) {
+        RootCore()
+      })
     }
+  }
 }
