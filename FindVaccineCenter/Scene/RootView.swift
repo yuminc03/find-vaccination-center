@@ -57,6 +57,7 @@ private extension RootView {
     VStack {
       HStack(spacing: 10) {
         searchBar
+        searchButton
       }
       .padding(.horizontal, 16)
       Spacer()
@@ -70,6 +71,21 @@ private extension RootView {
       .background(.white)
       .clipShape(RoundedRectangle(cornerRadius: 10))
       .shadow(radius: 10)
+  }
+  
+  var searchButton: some View {
+    Button {
+      
+    } label: {
+      Text("Search")
+        .font(.caption2)
+        .foregroundColor(.white)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 15)
+        .background(Color.blue)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(radius: 10)
+    }
   }
   
 }
