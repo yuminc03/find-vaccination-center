@@ -69,6 +69,7 @@ private extension RootView {
       .padding(.vertical, 10)
       .background(.white)
       .clipShape(RoundedRectangle(cornerRadius: 10))
+      .shadow(radius: 10)
   }
   
 }
