@@ -18,10 +18,20 @@ struct RootCore: Reducer {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
+    case didTapSearchButton
   }
   
   var body: some ReducerOf<Self> {
     Reduce { state, action in
+      switch action {
+      case .binding:
+        break
+        
+      case .didTapSearchButton:
+        break
+        
+      }
+      
       return .none
     }
   }
@@ -67,7 +77,7 @@ private extension RootView {
   var searchBar: some View {
     TextField("주소를 입력해주세요", text: viewStore.$searchText)
       .padding(.horizontal, 20)
-      .padding(.vertical, 10)
+      .padding(.vertical, 15)
       .background(.white)
       .clipShape(RoundedRectangle(cornerRadius: 10))
       .shadow(radius: 10)
@@ -75,13 +85,13 @@ private extension RootView {
   
   var searchButton: some View {
     Button {
-      
+      store.send(.didTapSearchButton)
     } label: {
-      Text("Search")
-        .font(.caption2)
+      Image(systemName: "magnifyingglass")
+        .resizable()
+        .frame(width: 20, height: 20)
         .foregroundColor(.white)
-        .padding(.horizontal, 10)
-        .padding(.vertical, 15)
+        .padding(15)
         .background(Color.blue)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(radius: 10)
