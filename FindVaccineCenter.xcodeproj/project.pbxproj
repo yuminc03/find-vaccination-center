@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		396FC208CCE6C869A743258E /* Pods_FindVaccineCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5587017B5C49EA1AA9F302F1 /* Pods_FindVaccineCenter.framework */; };
 		8D03CA682C0F5002004DEA36 /* RepresentedNaverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03CA672C0F5002004DEA36 /* RepresentedNaverMap.swift */; };
+		8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */; };
 		8D9614072C0CAC62003B4BA9 /* FindVaccineCenterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */; };
 		8D9614092C0CAC62003B4BA9 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614082C0CAC62003B4BA9 /* RootView.swift */; };
 		8D96140B2C0CAC62003B4BA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D96140A2C0CAC62003B4BA9 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		8D03CA672C0F5002004DEA36 /* RepresentedNaverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentedNaverMap.swift; sourceTree = "<group>"; };
 		8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterResponseDTO.swift; sourceTree = "<group>"; };
 		8D9614032C0CAC62003B4BA9 /* FindVaccineCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindVaccineCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindVaccineCenterApp.swift; sourceTree = "<group>"; };
 		8D9614082C0CAC62003B4BA9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,22 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		8D8F3F2F2C1F1A780059C3C0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8D8F3F302C1F1A7E0059C3C0 /* ResponseDTO */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8D8F3F302C1F1A7E0059C3C0 /* ResponseDTO */ = {
+			isa = PBXGroup;
+			children = (
+				8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */,
+			);
+			path = ResponseDTO;
+			sourceTree = "<group>";
+		};
 		8D9613FA2C0CAC62003B4BA9 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +230,7 @@
 		8DFEC8922C149B4C0021A098 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8D8F3F2F2C1F1A780059C3C0 /* Network */,
 				8DFEC8932C149BAB0021A098 /* Error.swift */,
 			);
 			path = Core;
@@ -475,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFEC8942C149BAB0021A098 /* Error.swift in Sources */,
+				8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */,
 				8D03CA682C0F5002004DEA36 /* RepresentedNaverMap.swift in Sources */,
 				8D9614092C0CAC62003B4BA9 /* RootView.swift in Sources */,
 				8DFEC8962C14AFCB0021A098 /* CenterFlag.swift in Sources */,
