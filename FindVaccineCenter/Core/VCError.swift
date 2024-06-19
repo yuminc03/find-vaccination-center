@@ -32,5 +32,11 @@ enum VCError: Error {
     case creatingURLFailed
     /// Encodable을 Data로 바꾸기 실패
     case encodableToDataFailed
+    /// 네트워크 연결이 안되어 있음
+    case notConnected
+    /// 유효하지 않은 상태 코드
+    case invalidStatusCode(Int)
+    /// 알 수 없는 오류
+    case unknown(Error? = nil)
   }
 }
