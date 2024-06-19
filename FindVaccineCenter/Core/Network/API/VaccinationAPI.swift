@@ -12,12 +12,12 @@ import Alamofire
 /// 코로나19 예방접종센터 조회서비스
 enum VaccinationAPI: TargetType {
   /// 예방접종센터 위치정보 API(GET)
-  case vaccinationCenter
+  case vaccinationCenter(page: Int, perPage: Int, returnType: String)
 }
 
 extension VaccinationAPI {
   var baseURL: String {
-    return "api.odcloud.kr/api"
+    return "https://api.odcloud.kr/api"
   }
   
   var path: String {
@@ -35,7 +35,7 @@ extension VaccinationAPI {
   }
   
   var headers: [String: String]? {
-    return [:]
+    return .authorization
   }
   
   var task: Task {
