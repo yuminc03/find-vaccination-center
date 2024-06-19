@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct RootCore: Reducer {
   struct State: Equatable {
     let id = UUID()
-    @BindingState var locationError: Error.LocationError?
+    @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
   }
   
