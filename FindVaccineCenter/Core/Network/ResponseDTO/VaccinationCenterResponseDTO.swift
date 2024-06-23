@@ -3,7 +3,7 @@ import Foundation
 /// 예방접종센터 위치정보 API
 ///
 /// API 참고 URL: https://www.data.go.kr/data/15077586/openapi.do#tab_layer_prcuse_exam
-struct VaccinationCenterResponseDTO: Decodable, Equatable {
+struct VaccinationCenterResponseDTO: Decodable {
   let currentCount: Int
   let data: [Vaccnination]
   let matchCount: Int
@@ -11,7 +11,7 @@ struct VaccinationCenterResponseDTO: Decodable, Equatable {
   let perPage: Int
   let totalCount: Int
   
-  struct Vaccnination: Decodable, Equatable {
+  struct Vaccnination: Decodable {
     /// 주소
     let address: String
     /// 예방 접종 센터명
@@ -38,5 +38,39 @@ struct VaccinationCenterResponseDTO: Decodable, Equatable {
     let updatedAt: String
     /// 우편번호
     let zipCode: String
+  }
+}
+
+extension VaccinationCenterResponseDTO {
+  var toEntity: VaccinationCenterEntity {
+    .init(
+      currentCount: currentCount,
+      data: data.map { $0.toEntity },
+      matchCount: matchCount,
+      page: page,
+      perPage: perPage, 
+      totalCount: totalCount
+    )
+  }
+}
+
+extension VaccinationCenterResponseDTO.Vaccnination {
+  var toEntity: VaccinationCenterEntity.Vaccnination {
+    .init(
+      address: address,
+      centerName: centerName,
+      centerType: centerType,
+      createdAt: createdAt,
+      facilityName: facilityName,
+      id: id,
+      lat: lat,
+      lng: lng,
+      org: org,
+      phoneNumber: phoneNumber,
+      sido: sido,
+      sigungu: sigungu, 
+      updatedAt: updatedAt,
+      zipCode: zipCode
+    )
   }
 }

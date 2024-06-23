@@ -9,19 +9,11 @@ import Foundation
 
 import Alamofire
 
-enum NetworkReturnType: String {
-  case xml = "XML"
-  case json = "JSON"
-}
-
 protocol NetworkManagerProtocol {
   func request<T: Decodable>(api: TargetType, dto: T.Type) async throws -> T
 }
 
 struct NetworkManager: NetworkManagerProtocol {
-  
-  private init() { }
-  
   func request<T: Decodable>(api: TargetType, dto: T.Type) async throws -> T {
     try connectNetwork()
     

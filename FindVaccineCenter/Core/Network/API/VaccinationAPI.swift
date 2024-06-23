@@ -22,8 +22,8 @@ extension VaccinationAPI {
   
   var path: String {
     switch self {
-    case .vaccinationCenter:
-      return "/15077586/v1/centers"
+    case let .vaccinationCenter(pageIndex, perPage, returnType):
+      return "/15077586/v1/centers?page=\(pageIndex)&perPage=\(perPage)&returnType=\(returnType)"
     }
   }
   

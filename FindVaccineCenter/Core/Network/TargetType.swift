@@ -18,13 +18,13 @@ extension TargetType {
       throw VCError.network(.percentEncodingFailed)
     }
     
-    guard let url = URL(string: "\(baseURL)\(encodedPath)") 
-    else {
+    guard let url = URL(
+      string: "\(baseURL)\(encodedPath)&serviceKey=\(Constants.apiServiceKey.toEncoding)"
+    ) else {
       throw VCError.network(.creatingURLFailed)
     }
     
     print("URL: \(url)")
-    
     var urlRequest = URLRequest(url: url, timeoutInterval: 10.0)
     urlRequest.method = httpMethod
     urlRequest.allHTTPHeaderFields = headers

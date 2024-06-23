@@ -11,10 +11,10 @@
 		8D03CA682C0F5002004DEA36 /* RepresentedNaverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03CA672C0F5002004DEA36 /* RepresentedNaverMap.swift */; };
 		8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D54F2C2059A800681BD4 /* Dictionary+.swift */; };
 		8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF93E2C230F18005CC85E /* NetworkManager.swift */; };
+		8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */; };
+		8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */; };
 		8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */; };
 		8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */; };
-		8D8F3F352C1F205B0059C3C0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8D8F3F342C1F205B0059C3C0 /* Alamofire */; };
-		8D8F3F372C1F205B0059C3C0 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8D8F3F362C1F205B0059C3C0 /* AlamofireDynamic */; };
 		8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */; };
 		8D8F3F3D2C1F2A070059C3C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F3C2C1F2A070059C3C0 /* Constants.swift */; };
 		8D9614072C0CAC62003B4BA9 /* FindVaccineCenterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */; };
@@ -24,6 +24,8 @@
 		8D9614182C0CAC62003B4BA9 /* FindVaccineCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614172C0CAC62003B4BA9 /* FindVaccineCenterTests.swift */; };
 		8D9614222C0CAC62003B4BA9 /* FindVaccineCenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614212C0CAC62003B4BA9 /* FindVaccineCenterUITests.swift */; };
 		8D9614242C0CAC62003B4BA9 /* FindVaccineCenterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614232C0CAC62003B4BA9 /* FindVaccineCenterUITestsLaunchTests.swift */; };
+		8DFCCA2A2C283F44000937E2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8DFCCA292C283F44000937E2 /* Alamofire */; };
+		8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCCA2B2C28485F000937E2 /* String+.swift */; };
 		8DFEC8942C149BAB0021A098 /* VCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEC8932C149BAB0021A098 /* VCError.swift */; };
 		8DFEC8962C14AFCB0021A098 /* CenterFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEC8952C14AFCB0021A098 /* CenterFlag.swift */; };
 		8DFEC8992C1560710021A098 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 8DFEC8982C1560710021A098 /* ComposableArchitecture */; };
@@ -59,6 +61,8 @@
 		8D03CA672C0F5002004DEA36 /* RepresentedNaverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentedNaverMap.swift; sourceTree = "<group>"; };
 		8D12D54F2C2059A800681BD4 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		8D3FF93E2C230F18005CC85E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
+		8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterEntity.swift; sourceTree = "<group>"; };
 		8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterResponseDTO.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		8D96141D2C0CAC62003B4BA9 /* FindVaccineCenterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindVaccineCenterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9614212C0CAC62003B4BA9 /* FindVaccineCenterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindVaccineCenterUITests.swift; sourceTree = "<group>"; };
 		8D9614232C0CAC62003B4BA9 /* FindVaccineCenterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindVaccineCenterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8DFCCA2B2C28485F000937E2 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		8DFEC8932C149BAB0021A098 /* VCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCError.swift; sourceTree = "<group>"; };
 		8DFEC8952C14AFCB0021A098 /* CenterFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterFlag.swift; sourceTree = "<group>"; };
 		9D4A362E40EA495B4CAE9ABE /* Pods-FindVaccineCenter-FindVaccineCenterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindVaccineCenter-FindVaccineCenterUITests.release.xcconfig"; path = "Target Support Files/Pods-FindVaccineCenter-FindVaccineCenterUITests/Pods-FindVaccineCenter-FindVaccineCenterUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,8 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D8F3F352C1F205B0059C3C0 /* Alamofire in Frameworks */,
-				8D8F3F372C1F205B0059C3C0 /* AlamofireDynamic in Frameworks */,
+				8DFCCA2A2C283F44000937E2 /* Alamofire in Frameworks */,
 				8DFEC8992C1560710021A098 /* ComposableArchitecture in Frameworks */,
 				396FC208CCE6C869A743258E /* Pods_FindVaccineCenter.framework in Frameworks */,
 			);
@@ -141,6 +145,7 @@
 		8D03CA642C0F4FB1004DEA36 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				8D3FF9432C231726005CC85E /* Entity */,
 				8D9614082C0CAC62003B4BA9 /* RootView.swift */,
 				8DFEC8952C14AFCB0021A098 /* CenterFlag.swift */,
 			);
@@ -167,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				8D12D54F2C2059A800681BD4 /* Dictionary+.swift */,
+				8DFCCA2B2C28485F000937E2 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -174,8 +180,17 @@
 		8D3FF9402C2315B5005CC85E /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		8D3FF9432C231726005CC85E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		8D8F3F2F2C1F1A780059C3C0 /* Network */ = {
@@ -312,8 +327,7 @@
 			name = FindVaccineCenter;
 			packageProductDependencies = (
 				8DFEC8982C1560710021A098 /* ComposableArchitecture */,
-				8D8F3F342C1F205B0059C3C0 /* Alamofire */,
-				8D8F3F362C1F205B0059C3C0 /* AlamofireDynamic */,
+				8DFCCA292C283F44000937E2 /* Alamofire */,
 			);
 			productName = FindVaccineCenter;
 			productReference = 8D9614032C0CAC62003B4BA9 /* FindVaccineCenter.app */;
@@ -392,7 +406,7 @@
 			mainGroup = 8D9613FA2C0CAC62003B4BA9;
 			packageReferences = (
 				8DFEC8972C1560710021A098 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				8D8F3F332C1F205B0059C3C0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				8DFCCA282C283F44000937E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8D9614042C0CAC62003B4BA9 /* Products */;
 			projectDirPath = "";
@@ -547,8 +561,11 @@
 				8D03CA682C0F5002004DEA36 /* RepresentedNaverMap.swift in Sources */,
 				8D9614092C0CAC62003B4BA9 /* RootView.swift in Sources */,
 				8DFEC8962C14AFCB0021A098 /* CenterFlag.swift in Sources */,
+				8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */,
 				8D9614072C0CAC62003B4BA9 /* FindVaccineCenterApp.swift in Sources */,
+				8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */,
 				8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */,
+				8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */,
 				8D8F3F3D2C1F2A070059C3C0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -901,9 +918,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8D8F3F332C1F205B0059C3C0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		8DFCCA282C283F44000937E2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire#features";
+			repositoryURL = "https://github.com/Alamofire/Alamofire/";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.9.1;
@@ -920,15 +937,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8D8F3F342C1F205B0059C3C0 /* Alamofire */ = {
+		8DFCCA292C283F44000937E2 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8D8F3F332C1F205B0059C3C0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 8DFCCA282C283F44000937E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		8D8F3F362C1F205B0059C3C0 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D8F3F332C1F205B0059C3C0 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 		8DFEC8982C1560710021A098 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
