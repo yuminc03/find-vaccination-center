@@ -12,7 +12,7 @@ import CoreLocation
 import NMapsMap
 
 struct RepresentedNaverMap: UIViewRepresentable {
-  @Binding var locationError: Error.LocationError?
+  @Binding var locationError: VCError.LocationError?
 
   func makeUIView(context: Context) -> NMFNaverMapView {
     let mapView = NMFNaverMapView(frame: .zero)

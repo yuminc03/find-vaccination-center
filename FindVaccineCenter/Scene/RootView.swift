@@ -12,24 +12,48 @@ import ComposableArchitecture
 struct RootCore: Reducer {
   struct State: Equatable {
     let id = UUID()
+    var vaccninations: VaccinationCenterEntity?
+    var error: VCError?
     @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
   }
   
+  private let repo = VaccinationCenterRepository()
+  
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
     case didTapSearchButton
+    
+    case requestVaccination
+    case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
   }
   
   var body: some ReducerOf<Self> {
+    BindingReducer()
     Reduce { state, action in
       switch action {
       case .binding:
         break
         
       case .didTapSearchButton:
-        break
+        return .run { send in
+          await send(.requestVaccination)
+        }
         
+      case .requestVaccination:
+        state.error = nil
+        return .run { send in
+          let dto = try await repo.requestVaccinationCenter()
+          await send(._vaccinationResponse(.success(dto)))
+        } catch: { error, send in
+          await send(._vaccinationResponse(.failure(error.toVCError)))
+        }
+        
+      case let ._vaccinationResponse(.success(dto)):
+        state.vaccninations = dto
+        
+      case let ._vaccinationResponse(.failure(error)):
+        state.error = error
       }
       
       return .none

@@ -8,12 +8,12 @@
 import Foundation
 
 /// VaccineCenter 앱에서 사용하는 오류
-enum VCError: Error {
+enum VCError: Error, Equatable {
   case location(LocationError)
   case network(NetworkError)
   
   /// 위치 관련 오류
-  enum LocationError {
+  enum LocationError: Equatable {
     /// 위치 권한이 없음
     case unAuthorized
     /// 위치 정보 접근 제한됨
@@ -25,7 +25,7 @@ enum VCError: Error {
   }
   
   /// 네트워크 통신 오류
-  enum NetworkError {
+  enum NetworkError: Equatable {
     /// URL path encoding 실패
     case percentEncodingFailed
     /// URLString을 URL로 바꾸기 실패
@@ -38,5 +38,51 @@ enum VCError: Error {
     case invalidStatusCode(Int)
     /// 알 수 없는 오류
     case unknown(Error? = nil)
+    
+    static func == (lhs: VCError.NetworkError, rhs: VCError.NetworkError) -> Bool {
+      switch lhs {
+      case .percentEncodingFailed:
+        return rhs == .percentEncodingFailed
+        
+      case .creatingURLFailed:
+        return rhs == .creatingURLFailed
+        
+      case .encodableToDataFailed:
+        return rhs == .encodableToDataFailed
+        
+      case .notConnected:
+        return rhs == .notConnected
+        
+      case let .invalidStatusCode(code):
+        switch rhs {
+        case let .invalidStatusCode(code2):
+          if code == code2 {
+            return true
+          } else {
+            return false
+          }
+          
+        default: return false
+        }
+        
+      case let .unknown(error):
+        switch rhs {
+        case let .unknown(error2):
+          if error?.localizedDescription == error2?.localizedDescription {
+            return true
+          } else {
+            return false
+          }
+          
+        default: return false
+        }
+      }
+    }
+  }
+}
+
+extension Error {
+  var toVCError: VCError {
+    return self as? VCError ?? .network(.unknown())
   }
 }
