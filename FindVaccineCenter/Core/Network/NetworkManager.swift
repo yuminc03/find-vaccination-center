@@ -18,6 +18,9 @@ struct NetworkManager: NetworkManagerProtocol {
     try connectNetwork()
     
     let dataTask = await AF.request(api).serializingDecodable(T.self).result
+    let data = try await AF.request(api).serializingData().value
+    print("Network Response: \(data.toPrittierJSON)")
+    
     switch dataTask {
     case let .success(dto):
       return dto
