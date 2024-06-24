@@ -38,16 +38,13 @@ struct RepresentedNaverMap: UIViewRepresentable {
     return .init(parent: self)
   }
   
-  
   final class Cooridnator: NSObject, NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     private let parent: RepresentedNaverMap
-    private var locationManager: CLLocationManager?
     private var cameraLocation: NMGLatLng = .init(lat: 37.35959299, lng: 127.10531600)
 
     init(parent: RepresentedNaverMap) {
       self.parent = parent
       super.init()
-      
       getCurrentLocation()
     }
     
@@ -68,35 +65,10 @@ struct RepresentedNaverMap: UIViewRepresentable {
     private func getCurrentLocation() {
       DispatchQueue.global().async { [weak self] in
         if CLLocationManager.locationServicesEnabled() {
-          self?.locationManager = CLLocationManager()
-          self?.locationManager?.delegate = self
-          self?.checkLocationPermission()
+          AuthorityService.locationManager.delegate = self
         } else {
           self?.parent.locationError = .unAuthorized
         }
-      }
-    }
-    
-    private func checkLocationPermission() {
-      guard let locationManager else { return }
-      
-      switch locationManager.authorizationStatus {
-      case .notDetermined:
-        locationManager.requestWhenInUseAuthorization()
-        
-      case .restricted:
-        parent.locationError = .restricted
-        
-      case .denied:
-        parent.locationError = .denied
-        
-      case .authorizedAlways, .authorizedWhenInUse, .authorized:
-        cameraLocation.lat = locationManager.location?.coordinate.latitude ?? 0.0
-        cameraLocation.lng = locationManager.location?.coordinate.longitude ?? 0.0
-        moveCamera()
-        
-      @unknown default:
-        parent.locationError = .unknown(nil)
       }
     }
     

@@ -77,6 +77,9 @@ struct RootView: View {
       searchView
       CenterFlag()
     }
+    .onAppear {
+      AuthorityService.requestLocationPermission()
+    }
   }
 }
 
