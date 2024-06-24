@@ -21,7 +21,7 @@ final class VaccinationCenterRepository {
     returnType: ReturnType = .json
   ) async throws -> VaccinationCenterEntity {
     let api = VaccinationAPI.vaccinationCenter(page: pageIndex, perPage: dataCount, returnType: returnType.rawValue)
-    let dto = try await networkManager.request(api: api, dto: VaccinationCenterResponseDTO.self)
+    let dto = try await networkManager.request(target: api, type: VaccinationCenterResponseDTO.self)
     return dto.toEntity
   }
 }
