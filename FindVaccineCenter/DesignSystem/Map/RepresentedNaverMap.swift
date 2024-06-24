@@ -13,16 +13,20 @@ import NMapsMap
 
 struct RepresentedNaverMap: UIViewRepresentable {
   @Binding var locationError: VCError.LocationError?
+  
+  private let mapView: NMFNaverMapView = {
+    let v = NMFNaverMapView(frame: .zero)
+    v.mapView.positionMode = .direction
+    v.mapView.isNightModeEnabled = true
+    v.mapView.zoomLevel = 15
+    v.showLocationButton = true
+    v.showZoomControls = true
+    v.showCompass = true
+    v.showScaleBar = true
+    return v
+  }()
 
   func makeUIView(context: Context) -> NMFNaverMapView {
-    let mapView = NMFNaverMapView(frame: .zero)
-    mapView.mapView.positionMode = .direction
-    mapView.mapView.isNightModeEnabled = true
-    mapView.mapView.zoomLevel = 15
-    mapView.showLocationButton = true
-    mapView.showZoomControls = true
-    mapView.showCompass = true
-    mapView.showScaleBar = true
     mapView.mapView.addCameraDelegate(delegate: context.coordinator.self)
     mapView.mapView.touchDelegate = context.coordinator.self
     return mapView
@@ -38,17 +42,27 @@ struct RepresentedNaverMap: UIViewRepresentable {
   final class Cooridnator: NSObject, NMFMapViewCameraDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     private let parent: RepresentedNaverMap
     private var locationManager: CLLocationManager?
-    private var cameraLocation: (lat: Double, lng: Double)?
+    private var cameraLocation: NMGLatLng = .init(lat: 37.35959299, lng: 127.10531600)
 
     init(parent: RepresentedNaverMap) {
       self.parent = parent
       super.init()
+      
       getCurrentLocation()
     }
     
     func mapViewCameraIdle(_ mapView: NMFMapView) {
-      cameraLocation?.lat = mapView.cameraPosition.target.lat
-      cameraLocation?.lng = mapView.cameraPosition.target.lng
+      cameraLocation.lat = mapView.cameraPosition.target.lat
+      cameraLocation.lng = mapView.cameraPosition.target.lng
+      moveCamera()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+      guard let location = locations.first else { return }
+      
+      cameraLocation.lat = location.coordinate.latitude
+      cameraLocation.lng = location.coordinate.longitude
+      moveCamera()
     }
     
     private func getCurrentLocation() {
@@ -77,11 +91,20 @@ struct RepresentedNaverMap: UIViewRepresentable {
         parent.locationError = .denied
         
       case .authorizedAlways, .authorizedWhenInUse, .authorized:
-        cameraLocation?.lat = locationManager.location?.coordinate.latitude ?? 0.0
-        cameraLocation?.lng = locationManager.location?.coordinate.longitude ?? 0.0
+        cameraLocation.lat = locationManager.location?.coordinate.latitude ?? 0.0
+        cameraLocation.lng = locationManager.location?.coordinate.longitude ?? 0.0
+        moveCamera()
         
       @unknown default:
         parent.locationError = .unknown(nil)
+      }
+    }
+    
+    private func moveCamera() {
+      DispatchQueue.main.async {
+        let cameraUpdate = NMFCameraUpdate(scrollTo: .init(lat: self.cameraLocation.lat, lng: self.cameraLocation.lng))
+        cameraUpdate.animation = .linear
+        self.parent.mapView.mapView.moveCamera(cameraUpdate)
       }
     }
   }
