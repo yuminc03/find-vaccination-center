@@ -77,7 +77,7 @@ struct RepresentedNaverMap: UIViewRepresentable {
         cameraLocation?.lng = locationManager.location?.coordinate.longitude ?? 0.0
         
       @unknown default:
-        parent.locationError = .unknown
+        parent.locationError = .unknown(nil)
       }
     }
   }

@@ -29,7 +29,7 @@ struct NetworkManager: NetworkManagerProtocol {
       if let statusCode = error.responseCode {
         throw VCError.network(.invalidStatusCode(statusCode))
       } else {
-        throw VCError.network(.unknown(error))
+        throw VCError.network(.unknown(error.localizedDescription))
       }
     }
   }
