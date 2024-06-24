@@ -42,6 +42,8 @@ struct RepresentedNaverMap: UIViewRepresentable {
 
     init(parent: RepresentedNaverMap) {
       self.parent = parent
+      super.init()
+      getCurrentLocation()
     }
     
     func mapViewCameraIdle(_ mapView: NMFMapView) {
@@ -50,12 +52,14 @@ struct RepresentedNaverMap: UIViewRepresentable {
     }
     
     private func getCurrentLocation() {
-      if CLLocationManager.locationServicesEnabled() {
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        checkLocationPermission()
-      } else {
-        parent.locationError = .unAuthorized
+      DispatchQueue.global().async { [weak self] in
+        if CLLocationManager.locationServicesEnabled() {
+          self?.locationManager = CLLocationManager()
+          self?.locationManager?.delegate = self
+          self?.checkLocationPermission()
+        } else {
+          self?.parent.locationError = .unAuthorized
+        }
       }
     }
     
