@@ -9,7 +9,7 @@ import SwiftUI
 
 import ComposableArchitecture
 
-struct RootCore: Reducer {
+struct AppCore: Reducer {
   struct State: Equatable {
     let id = UUID()
     var vaccninations: VaccinationCenterEntity?
@@ -61,11 +61,11 @@ struct RootCore: Reducer {
   }
 }
 
-struct RootView: View {
-  private let store: StoreOf<RootCore>
-  @ObservedObject private var viewStore: ViewStoreOf<RootCore>
+struct AppView: View {
+  private let store: StoreOf<AppCore>
+  @ObservedObject private var viewStore: ViewStoreOf<AppCore>
   
-  init(store: StoreOf<RootCore>) {
+  init(store: StoreOf<AppCore>) {
     self.store = store
     self.viewStore = .init(store, observe: { $0 })
   }
@@ -84,12 +84,12 @@ struct RootView: View {
 }
 
 #Preview {
-  RootView(store: .init(initialState: RootCore.State()) {
-    RootCore()
+  AppView(store: .init(initialState: AppCore.State()) {
+    AppCore()
   })
 }
 
-private extension RootView {
+private extension AppView {
   var searchView: some View {
     VStack {
       HStack(spacing: 10) {
