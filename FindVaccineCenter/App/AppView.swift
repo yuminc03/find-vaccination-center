@@ -13,7 +13,8 @@ import ComposableArchitecture
 struct AppCore: Reducer {
   struct State: Equatable {
     let id = UUID()
-    var vaccninations: VaccinationCenterEntity?
+    var vaccinations: VaccinationCenterEntity?
+    var searchResults: [VaccinationCenterEntity.Vaccnination]?
     var error: VCError?
     @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
@@ -51,7 +52,9 @@ struct AppCore: Reducer {
         }
         
       case let ._vaccinationResponse(.success(dto)):
-        state.vaccninations = dto
+        let searchedData = dto.data.filter { $0.centerName.contains(state.searchText) }
+        state.vaccinations = dto
+        state.searchResults = searchedData
         
       case let ._vaccinationResponse(.failure(error)):
         state.error = error
@@ -77,8 +80,13 @@ struct AppView: View {
   
   var body: some View {
     ZStack {
-      RepresentedNaverMap(locationError: viewStore.$locationError)
-        .ignoresSafeArea()
+      Map(
+        coordinateRegion: $region,
+        interactionModes: [.zoom],
+        showsUserLocation: true,
+        userTrackingMode: .constant(.follow)
+      )
+      .ignoresSafeArea()
       searchView
       CenterFlag()
     }
