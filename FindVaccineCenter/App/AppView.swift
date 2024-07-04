@@ -16,6 +16,7 @@ struct AppCore: Reducer {
     var vaccinations: VaccinationCenterEntity?
     var searchResults: [VaccinationCenterEntity.Vaccnination]?
     var error: VCError?
+    
     @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
   }
@@ -69,10 +70,24 @@ struct AppView: View {
   private let store: StoreOf<AppCore>
   @ObservedObject private var viewStore: ViewStoreOf<AppCore>
   @StateObject private var locationService = LocationAuthorityService.shared
-  @State var region = MKCoordinateRegion(
-    center: .init(latitude: 37.35959299, longitude: 127.10531600),
-    span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5)
+  @State private var currentRegion = MKCoordinateRegion(
+    center: .init(
+      latitude: 37.35959299,
+      longitude: 127.10531600
+    ),
+    span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
   )
+  
+  private var region: Binding<MKCoordinateRegion> {
+    return .init(
+      get: { currentRegion },
+      set: { newValue in
+        DispatchQueue.main.async {
+          currentRegion = newValue
+        }
+      }
+    )
+  }
   
   init(store: StoreOf<AppCore>) {
     self.store = store
@@ -81,18 +96,21 @@ struct AppView: View {
   
   var body: some View {
     ZStack {
-      Map(
-        coordinateRegion: $region,
-        interactionModes: [.zoom],
-        showsUserLocation: true,
-        userTrackingMode: .constant(.follow)
-      )
-      .ignoresSafeArea()
+      Map(coordinateRegion: region, showsUserLocation: true)
+        .ignoresSafeArea()
       searchView
-      CenterFlag()
     }
     .onAppear {
       locationService.initialize()
+    }
+    .onReceive(locationService.$currentLocation) {
+      guard let latitude = $0?.coordinate.latitude,
+            let longitude = $0?.coordinate.longitude
+      else { return }
+      currentRegion = .init(
+        center: .init(latitude: latitude, longitude: longitude),
+        span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+      )
     }
     .environmentObject(locationService)
   }
@@ -139,5 +157,4 @@ private extension AppView {
         .shadow(radius: 10)
     }
   }
-  
 }

@@ -25,26 +25,6 @@ final class LocationAuthorityService: NSObject, ObservableObject {
       }
     }
   }
-  
-  /// 위치 접근 허용
-  func requestLocationPermission() {
-    switch locationManager.authorizationStatus {
-    case .notDetermined:
-      locationManager.requestWhenInUseAuthorization()
-      
-    case .restricted:
-      break
-      
-    case .denied:
-      break
-      
-    case .authorizedAlways, .authorizedWhenInUse, .authorized:
-      locationManager.requestLocation()
-      
-    @unknown default:
-      break
-    }
-  }
 }
 
 extension LocationAuthorityService: CLLocationManagerDelegate {
