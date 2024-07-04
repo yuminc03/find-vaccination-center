@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05C2844D2C29546400655C84 /* AuthorityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2844C2C29546400655C84 /* AuthorityService.swift */; };
+		05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2844C2C29546400655C84 /* LocationAuthorityService.swift */; };
 		396FC208CCE6C869A743258E /* Pods_FindVaccineCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5587017B5C49EA1AA9F302F1 /* Pods_FindVaccineCenter.framework */; };
 		8D03CA682C0F5002004DEA36 /* RepresentedNaverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03CA672C0F5002004DEA36 /* RepresentedNaverMap.swift */; };
 		8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D54F2C2059A800681BD4 /* Dictionary+.swift */; };
@@ -54,7 +54,7 @@
 
 /* Begin PBXFileReference section */
 		01C4CB78A69F956989D91057 /* Pods-FindVaccineCenterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindVaccineCenterTests.release.xcconfig"; path = "Target Support Files/Pods-FindVaccineCenterTests/Pods-FindVaccineCenterTests.release.xcconfig"; sourceTree = "<group>"; };
-		05C2844C2C29546400655C84 /* AuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorityService.swift; sourceTree = "<group>"; };
+		05C2844C2C29546400655C84 /* LocationAuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorityService.swift; sourceTree = "<group>"; };
 		2648309CF057604BAD0F6FA3 /* Pods_FindVaccineCenterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindVaccineCenterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A40C6256B4560A33439C6AB /* Pods-FindVaccineCenter-FindVaccineCenterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindVaccineCenter-FindVaccineCenterUITests.debug.xcconfig"; path = "Target Support Files/Pods-FindVaccineCenter-FindVaccineCenterUITests/Pods-FindVaccineCenter-FindVaccineCenterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5587017B5C49EA1AA9F302F1 /* Pods_FindVaccineCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindVaccineCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,7 +67,6 @@
 		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
 		8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterEntity.swift; sourceTree = "<group>"; };
 		8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterResponseDTO.swift; sourceTree = "<group>"; };
 		8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationAPI.swift; sourceTree = "<group>"; };
@@ -123,7 +122,7 @@
 		05C2844B2C29545400655C84 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				05C2844C2C29546400655C84 /* AuthorityService.swift */,
+				05C2844C2C29546400655C84 /* LocationAuthorityService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -265,7 +264,6 @@
 				8D03CA652C0F4FD4004DEA36 /* DesignSystem */,
 				8D03CA632C0F4F9B004DEA36 /* Resource */,
 				8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */,
-				8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */,
 				8D96140C2C0CAC62003B4BA9 /* Preview Content */,
 			);
 			path = FindVaccineCenter;
@@ -578,7 +576,7 @@
 				8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */,
 				8D9614072C0CAC62003B4BA9 /* FindVaccineCenterApp.swift in Sources */,
 				8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */,
-				05C2844D2C29546400655C84 /* AuthorityService.swift in Sources */,
+				05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */,
 				8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */,
 				8DFCCA2E2C285C44000937E2 /* Data+.swift in Sources */,
 				8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */,
@@ -621,7 +619,6 @@
 /* Begin XCBuildConfiguration section */
 		8D9614252C0CAC62003B4BA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -685,7 +682,6 @@
 		};
 		8D9614262C0CAC62003B4BA9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D7ACBCC2C0DFDC300B6A0E2 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -749,7 +745,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -784,7 +780,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

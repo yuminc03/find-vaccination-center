@@ -68,6 +68,7 @@ struct AppCore: Reducer {
 struct AppView: View {
   private let store: StoreOf<AppCore>
   @ObservedObject private var viewStore: ViewStoreOf<AppCore>
+  @StateObject private var locationService = LocationAuthorityService.shared
   @State var region = MKCoordinateRegion(
     center: .init(latitude: 37.35959299, longitude: 127.10531600),
     span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5)
@@ -91,8 +92,9 @@ struct AppView: View {
       CenterFlag()
     }
     .onAppear {
-      AuthorityService.requestLocationPermission()
+      locationService.initialize()
     }
+    .environmentObject(locationService)
   }
 }
 

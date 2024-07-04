@@ -65,7 +65,7 @@ struct RepresentedNaverMap: UIViewRepresentable {
     private func getCurrentLocation() {
       DispatchQueue.global().async { [weak self] in
         if CLLocationManager.locationServicesEnabled() {
-          AuthorityService.locationManager.delegate = self
+//          LocationAuthorityService.locationManager.delegate = self
         } else {
           self?.parent.locationError = .unAuthorized
         }
