@@ -38,6 +38,8 @@ struct SearchView: View {
     VStack(spacing: 0) {
       SearchBar
         .padding(.horizontal, 20)
+      
+      Separator
     }
   }
 }
@@ -63,5 +65,11 @@ private extension SearchView {
         .padding(.vertical, 15)
         .background(.white)
     }
+  }
+  
+  var Separator: some View {
+    Rectangle()
+      .fill(.gray)
+      .frame(height: 10)
   }
 }
