@@ -4,15 +4,21 @@ import ComposableArchitecture
 
 struct SearchCore: Reducer {
   struct State: Equatable {
-    
+    @BindingState var searchText = ""
   }
   
-  enum Action {
-    
+  enum Action: BindableAction, Equatable {
+    case binding(BindingAction<State>)
   }
   
   var body: some ReducerOf<Self> {
     Reduce { state, action in
+      switch action {
+      case .binding: break
+        
+        
+      }
+      
       return .none
     }
   }
@@ -29,7 +35,10 @@ struct SearchView: View {
   }
   
   var body: some View {
-    Text("")
+    VStack(spacing: 0) {
+      SearchBar
+        .padding(.horizontal, 20)
+    }
   }
 }
 
@@ -37,4 +46,22 @@ struct SearchView: View {
   SearchView(store: .init(initialState: SearchCore.State()) {
     SearchCore()
   })
+}
+
+private extension SearchView {
+  var SearchBar: some View {
+    HStack(spacing: 0) {
+      Button {
+        
+      } label: {
+        Image(systemName: "chevron.backward")
+          .size(20)
+          .foregroundColor(.black)
+      }
+      TextField("주소를 입력해주세요", text: viewStore.$searchText)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 15)
+        .background(.white)
+    }
+  }
 }
