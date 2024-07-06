@@ -14,6 +14,7 @@
 		8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF93E2C230F18005CC85E /* NetworkManager.swift */; };
 		8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */; };
 		8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */; };
+		8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855A4C2C397F9E003CFF0B /* SearchView.swift */; };
 		8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */; };
 		8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */; };
 		8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */; };
@@ -67,6 +68,7 @@
 		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
 		8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterEntity.swift; sourceTree = "<group>"; };
 		8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D855A4C2C397F9E003CFF0B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterResponseDTO.swift; sourceTree = "<group>"; };
 		8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationAPI.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		8D03CA642C0F4FB1004DEA36 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				8D855A4B2C397D42003CFF0B /* Search */,
 				8D3FF9432C231726005CC85E /* Entity */,
 				8DFEC8952C14AFCB0021A098 /* CenterFlag.swift */,
 			);
@@ -203,6 +206,14 @@
 				8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		8D855A4B2C397D42003CFF0B /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8D855A4C2C397F9E003CFF0B /* SearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		8D8F3F2F2C1F1A780059C3C0 /* Network */ = {
@@ -571,6 +582,7 @@
 				8DFEC8942C149BAB0021A098 /* VCError.swift in Sources */,
 				8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */,
 				8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */,
+				8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */,
 				8D9614092C0CAC62003B4BA9 /* AppView.swift in Sources */,
 				8DFEC8962C14AFCB0021A098 /* CenterFlag.swift in Sources */,
 				8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */,
