@@ -5,6 +5,23 @@ import ComposableArchitecture
 struct SearchCore: Reducer {
   struct State: Equatable {
     @BindingState var searchText = ""
+    let searchList: [SearchListItemEntity] = [
+      .init(
+        centerName: "코로나19 중앙 예방접종센터",
+        phoneNumber: "02-2260-7114",
+        address: "서울특별시 중구 을지로 39길 29"
+      ),
+      .init(
+        centerName: "코로나19 영남권역 예방접종센터",
+        phoneNumber: "055-360-6701",
+        address: "경상남도 양산시 물금읍 금오로 20"
+      ),
+      .init(
+        centerName: "코로나19 호남권역 예방접종센터",
+        phoneNumber: "062-220-3739",
+        address: "광주광역시 동구 필문대로 365"
+      ),
+    ]
   }
   
   enum Action: BindableAction, Equatable {
@@ -40,6 +57,8 @@ struct SearchView: View {
         .padding(.horizontal, 20)
       
       Separator
+      
+      SearchList
     }
   }
 }
@@ -71,5 +90,35 @@ private extension SearchView {
     Rectangle()
       .fill(.gray)
       .frame(height: 10)
+  }
+  
+  var SearchList: some View {
+    List {
+      ForEach(viewStore.searchList) { data in
+        listRow(data)
+      }
+    }
+    .listStyle(.plain)
+  }
+  
+  func listRow(_ data: SearchListItemEntity) -> some View {
+    HStack(spacing: 20) {
+      Image(systemName: "magnifyingglass")
+      VStack(alignment: .leading, spacing: 5) {
+        Text(data.centerName)
+          .font(.headline)
+        Text(data.phoneNumber)
+          .font(.caption)
+        Text(data.address)
+          .font(.footnote)
+      }
+      Spacer()
+      Button {
+        
+      } label: {
+        Image(systemName: "xmark")
+          .size(12)
+      }
+    }
   }
 }

@@ -180,6 +180,7 @@
 		8D03CA652C0F4FD4004DEA36 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				8D855A532C398D0C003CFF0B /* Color */,
 				8D855A4E2C3983B7003CFF0B /* ViewModifier */,
 			);
 			path = DesignSystem;
@@ -225,6 +226,13 @@
 				8D855A512C398645003CFF0B /* Image+.swift */,
 			);
 			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		8D855A532C398D0C003CFF0B /* Color */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 		8D8F3F2F2C1F1A780059C3C0 /* Network */ = {
