@@ -26,15 +26,16 @@ struct SearchCore: Reducer {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
-    
+    case tapBackButton
+    case tapRowDeleteButton
   }
   
   var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
       case .binding: break
-        
-        
+      case .tapBackButton: break
+      case .tapRowDeleteButton: break
       }
       
       return .none
@@ -74,7 +75,7 @@ private extension SearchView {
   var SearchBar: some View {
     HStack(spacing: 0) {
       Button {
-        
+        store.send(.tapBackButton)
       } label: {
         Image(systemName: .systemImage(.backArrow))
           .size(20)
@@ -118,7 +119,7 @@ private extension SearchView {
       }
       Spacer()
       Button {
-        
+        store.send(.tapRowDeleteButton)
       } label: {
         Image(systemName: .systemImage(.xmark))
           .size(12)
