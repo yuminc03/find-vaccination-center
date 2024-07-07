@@ -26,6 +26,7 @@ struct SearchCore: Reducer {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
+    
   }
   
   var body: some ReducerOf<Self> {
@@ -87,9 +88,12 @@ private extension SearchView {
   }
   
   var Separator: some View {
-    Rectangle()
-      .fill(.gray)
-      .frame(height: 10)
+    VStack(spacing: 0) {
+      Divider()
+      Rectangle()
+        .foregroundColor(.gray100)
+        .frame(height: 10)
+    }
   }
   
   var SearchList: some View {
