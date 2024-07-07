@@ -9,7 +9,7 @@ struct DetailCore: Reducer {
   }
   
   enum Action {
-    
+    case tapBackButton
   }
   
   var body: some ReducerOf<Self> {
@@ -19,6 +19,7 @@ struct DetailCore: Reducer {
   }
 }
 
+/// 병원 상세 정보 화면
 struct DetailView: View {
   private let store: StoreOf<DetailCore>
   @ObservedObject private var viewStore: ViewStoreOf<DetailCore>
@@ -37,8 +38,13 @@ struct DetailView: View {
   }
   
   var body: some View {
-    ZStack(alignment: .top) {
+    VStack(spacing: 0) {
       MapView
+      
+      BottomSheet
+    }
+    .VCNaviBar(title: "Test") {
+      store.send(.tapBackButton)
     }
   }
 }
@@ -53,13 +59,13 @@ private extension DetailView {
   var MapView: some View {
     Map(coordinateRegion: .constant(currentRegion))
       .ignoresSafeArea()
-      .frame(height: 480)
+      .frame(height: 300)
   }
   
   var BottomSheet: some View {
     VStack(spacing: 10) {
       
     }
-    .frame(height: 500)
+    .frame(maxHeight: .infinity)
   }
 }
