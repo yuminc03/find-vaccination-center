@@ -17,7 +17,7 @@ struct NavigationBarModifier<L, C, R>: ViewModifier where L: View, C: View, R: V
   }
   
   func body(content: Content) -> some View {
-    VStack {
+    VStack(spacing: 0) {
       ZStack {
         HStack {
           leftView?()
@@ -26,7 +26,7 @@ struct NavigationBarModifier<L, C, R>: ViewModifier where L: View, C: View, R: V
           
           rightView?()
         }
-        .frame(height: 56)
+        .frame(height: 50)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 20)
         
@@ -71,7 +71,7 @@ extension View {
     modifier(NavigationBarModifier(leftView: {
       Button (action: leftAction) {
         Image(systemName: .systemImage(.backArrow))
-          .size(20)
+          .size(15)
           .foregroundColor(.black)
       }
     }, centerView: {
@@ -81,4 +81,11 @@ extension View {
       EmptyView()
     }))
   }
+}
+
+#Preview {
+  Rectangle()
+    .VCNaviBar(title: "제목") {
+      
+    }
 }
