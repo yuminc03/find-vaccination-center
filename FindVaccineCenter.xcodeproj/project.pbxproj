@@ -18,6 +18,7 @@
 		8D855A522C398645003CFF0B /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855A512C398645003CFF0B /* Image+.swift */; };
 		8D855A582C3A4FAD003CFF0B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8D855A572C3A4FAD003CFF0B /* RswiftLibrary */; };
 		8D855A5A2C3A4FAD003CFF0B /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 8D855A592C3A4FAD003CFF0B /* rswift */; };
+		8D855A672C3A6B24003CFF0B /* SystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855A662C3A6B24003CFF0B /* SystemImage.swift */; };
 		8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */; };
 		8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */; };
 		8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */; };
@@ -73,6 +74,7 @@
 		8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D855A4C2C397F9E003CFF0B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		8D855A512C398645003CFF0B /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
+		8D855A662C3A6B24003CFF0B /* SystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImage.swift; sourceTree = "<group>"; };
 		8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterResponseDTO.swift; sourceTree = "<group>"; };
 		8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationAPI.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		8D03CA652C0F4FD4004DEA36 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				8D855A632C3A6B0D003CFF0B /* Image */,
 				8D855A4E2C3983B7003CFF0B /* ViewModifier */,
 			);
 			path = DesignSystem;
@@ -229,6 +232,14 @@
 				8D855A512C398645003CFF0B /* Image+.swift */,
 			);
 			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		8D855A632C3A6B0D003CFF0B /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				8D855A662C3A6B24003CFF0B /* SystemImage.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		8D8F3F2F2C1F1A780059C3C0 /* Network */ = {
@@ -596,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */,
+				8D855A672C3A6B24003CFF0B /* SystemImage.swift in Sources */,
 				05AAE12F2C369592001846D4 /* SearchListItemEntity.swift in Sources */,
 				8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */,
 				8DFEC8942C149BAB0021A098 /* VCError.swift in Sources */,

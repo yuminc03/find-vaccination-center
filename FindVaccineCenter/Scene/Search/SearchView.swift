@@ -76,7 +76,7 @@ private extension SearchView {
       Button {
         
       } label: {
-        Image(systemName: "chevron.backward")
+        Image(systemName: .systemImage(.backArrow))
           .size(20)
           .foregroundColor(.black)
       }
@@ -107,7 +107,7 @@ private extension SearchView {
   
   func listRow(_ data: SearchListItemEntity) -> some View {
     HStack(spacing: 20) {
-      Image(systemName: "magnifyingglass")
+      Image(systemName: .systemImage(.magnifyingglass))
       VStack(alignment: .leading, spacing: 5) {
         Text(data.centerName)
           .font(.headline)
@@ -120,7 +120,7 @@ private extension SearchView {
       Button {
         
       } label: {
-        Image(systemName: "xmark")
+        Image(systemName: .systemImage(.xmark))
           .size(12)
       }
     }

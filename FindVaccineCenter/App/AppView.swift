@@ -147,7 +147,7 @@ private extension AppView {
     Button {
       store.send(.didTapSearchButton)
     } label: {
-      Image(systemName: "magnifyingglass")
+      Image(systemName: .systemImage(.magnifyingglass))
         .resizable()
         .frame(width: 20, height: 20)
         .foregroundColor(.white)
