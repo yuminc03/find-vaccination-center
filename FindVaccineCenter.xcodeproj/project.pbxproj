@@ -16,6 +16,8 @@
 		8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */; };
 		8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855A4C2C397F9E003CFF0B /* SearchView.swift */; };
 		8D855A522C398645003CFF0B /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855A512C398645003CFF0B /* Image+.swift */; };
+		8D855A582C3A4FAD003CFF0B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8D855A572C3A4FAD003CFF0B /* RswiftLibrary */; };
+		8D855A5A2C3A4FAD003CFF0B /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 8D855A592C3A4FAD003CFF0B /* rswift */; };
 		8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F2D2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift */; };
 		8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F312C1F1FA10059C3C0 /* TargetType.swift */; };
 		8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F3F3A2C1F29110059C3C0 /* VaccinationAPI.swift */; };
@@ -98,7 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D855A5A2C3A4FAD003CFF0B /* rswift in Frameworks */,
 				8DFCCA2A2C283F44000937E2 /* Alamofire in Frameworks */,
+				8D855A582C3A4FAD003CFF0B /* RswiftLibrary in Frameworks */,
 				8DFEC8992C1560710021A098 /* ComposableArchitecture in Frameworks */,
 				396FC208CCE6C869A743258E /* Pods_FindVaccineCenter.framework in Frameworks */,
 			);
@@ -180,7 +184,6 @@
 		8D03CA652C0F4FD4004DEA36 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
-				8D855A532C398D0C003CFF0B /* Color */,
 				8D855A4E2C3983B7003CFF0B /* ViewModifier */,
 			);
 			path = DesignSystem;
@@ -226,13 +229,6 @@
 				8D855A512C398645003CFF0B /* Image+.swift */,
 			);
 			path = ViewModifier;
-			sourceTree = "<group>";
-		};
-		8D855A532C398D0C003CFF0B /* Color */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Color;
 			sourceTree = "<group>";
 		};
 		8D8F3F2F2C1F1A780059C3C0 /* Network */ = {
@@ -365,11 +361,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				8D855A5C2C3A5DE7003CFF0B /* PBXTargetDependency */,
 			);
 			name = FindVaccineCenter;
 			packageProductDependencies = (
 				8DFEC8982C1560710021A098 /* ComposableArchitecture */,
 				8DFCCA292C283F44000937E2 /* Alamofire */,
+				8D855A572C3A4FAD003CFF0B /* RswiftLibrary */,
+				8D855A592C3A4FAD003CFF0B /* rswift */,
 			);
 			productName = FindVaccineCenter;
 			productReference = 8D9614032C0CAC62003B4BA9 /* FindVaccineCenter.app */;
@@ -449,6 +448,7 @@
 			packageReferences = (
 				8DFEC8972C1560710021A098 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				8DFCCA282C283F44000937E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */,
 			);
 			productRefGroup = 8D9614042C0CAC62003B4BA9 /* Products */;
 			projectDirPath = "";
@@ -636,6 +636,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8D855A5C2C3A5DE7003CFF0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8D855A5B2C3A5DE7003CFF0B /* RswiftGenerateInternalResources */;
+		};
 		8D9614152C0CAC62003B4BA9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D9614022C0CAC62003B4BA9 /* FindVaccineCenter */;
@@ -962,6 +966,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.5.0;
+			};
+		};
 		8DFCCA282C283F44000937E2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire/";
@@ -981,6 +993,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8D855A572C3A4FAD003CFF0B /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		8D855A592C3A4FAD003CFF0B /* rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */;
+			productName = rswift;
+		};
+		8D855A5B2C3A5DE7003CFF0B /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
 		8DFCCA292C283F44000937E2 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8DFCCA282C283F44000937E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
