@@ -8,18 +8,15 @@ struct SearchCore: Reducer {
     let searchList: [SearchListItemEntity] = [
       .init(
         centerName: "코로나19 중앙 예방접종센터",
-        phoneNumber: "02-2260-7114",
-        address: "서울특별시 중구 을지로 39길 29"
+        dateString: "24.07.10"
       ),
       .init(
         centerName: "코로나19 영남권역 예방접종센터",
-        phoneNumber: "055-360-6701",
-        address: "경상남도 양산시 물금읍 금오로 20"
+        dateString: "24.07.10"
       ),
       .init(
         centerName: "코로나19 호남권역 예방접종센터",
-        phoneNumber: "062-220-3739",
-        address: "광주광역시 동구 필문대로 365"
+        dateString: "24.07.10"
       ),
     ]
   }
@@ -109,15 +106,15 @@ private extension SearchView {
   func listRow(_ data: SearchListItemEntity) -> some View {
     HStack(spacing: 20) {
       Image(systemName: .systemImage(.magnifyingglass))
-      VStack(alignment: .leading, spacing: 5) {
+      HStack(spacing: 5) {
         Text(data.centerName)
-          .font(.headline)
-        Text(data.phoneNumber)
+          .font(.body)
+          .lineLimit(1)
+        Spacer()
+        Text(data.dateString)
           .font(.caption)
-        Text(data.address)
-          .font(.footnote)
       }
-      Spacer()
+      
       Button {
         store.send(.tapRowDeleteButton)
       } label: {

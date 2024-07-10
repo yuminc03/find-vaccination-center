@@ -137,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */,
-				8DCE46CE2C3C1E3B007AC2F4 /* LocationEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -357,6 +356,7 @@
 		8DCE46CC2C3C1535007AC2F4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				8DCE46CE2C3C1E3B007AC2F4 /* LocationEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
