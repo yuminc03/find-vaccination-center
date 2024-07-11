@@ -32,7 +32,7 @@
 		8D9614182C0CAC62003B4BA9 /* FindVaccineCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614172C0CAC62003B4BA9 /* FindVaccineCenterTests.swift */; };
 		8D9614222C0CAC62003B4BA9 /* FindVaccineCenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614212C0CAC62003B4BA9 /* FindVaccineCenterUITests.swift */; };
 		8D9614242C0CAC62003B4BA9 /* FindVaccineCenterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9614232C0CAC62003B4BA9 /* FindVaccineCenterUITestsLaunchTests.swift */; };
-		8DCE46CF2C3C1E3B007AC2F4 /* LocationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE46CE2C3C1E3B007AC2F4 /* LocationEntity.swift */; };
+		8DCE46CF2C3C1E3B007AC2F4 /* CenterDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE46CE2C3C1E3B007AC2F4 /* CenterDetailEntity.swift */; };
 		8DFCCA2A2C283F44000937E2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8DFCCA292C283F44000937E2 /* Alamofire */; };
 		8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCCA2B2C28485F000937E2 /* String+.swift */; };
 		8DFCCA2E2C285C44000937E2 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCCA2D2C285C44000937E2 /* Data+.swift */; };
@@ -93,7 +93,7 @@
 		8D96141D2C0CAC62003B4BA9 /* FindVaccineCenterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindVaccineCenterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9614212C0CAC62003B4BA9 /* FindVaccineCenterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindVaccineCenterUITests.swift; sourceTree = "<group>"; };
 		8D9614232C0CAC62003B4BA9 /* FindVaccineCenterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindVaccineCenterUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		8DCE46CE2C3C1E3B007AC2F4 /* LocationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEntity.swift; sourceTree = "<group>"; };
+		8DCE46CE2C3C1E3B007AC2F4 /* CenterDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterDetailEntity.swift; sourceTree = "<group>"; };
 		8DFCCA2B2C28485F000937E2 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		8DFCCA2D2C285C44000937E2 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		8DFEC8932C149BAB0021A098 /* VCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCError.swift; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 		8DCE46CC2C3C1535007AC2F4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				8DCE46CE2C3C1E3B007AC2F4 /* LocationEntity.swift */,
+				8DCE46CE2C3C1E3B007AC2F4 /* CenterDetailEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -652,7 +652,7 @@
 				05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */,
 				8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */,
 				8D855A742C3A9093003CFF0B /* NavigationBar.swift in Sources */,
-				8DCE46CF2C3C1E3B007AC2F4 /* LocationEntity.swift in Sources */,
+				8DCE46CF2C3C1E3B007AC2F4 /* CenterDetailEntity.swift in Sources */,
 				8DFCCA2E2C285C44000937E2 /* Data+.swift in Sources */,
 				8D855A6E2C3A75E0003CFF0B /* DetailView.swift in Sources */,
 				8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */,
