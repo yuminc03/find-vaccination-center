@@ -1,12 +1,6 @@
-//
-//  MapAnnotationView.swift
-//  FindVaccineCenter
-//
-//  Created by Yumin Chu on 7/11/24.
-//
-
 import SwiftUI
 
+/// 지도에 예방접종 센터 위치를 표시할 Marker
 struct MapAnnotationView: View {
   var body: some View {
     VStack(spacing: 0) {
