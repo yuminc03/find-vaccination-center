@@ -1,18 +1,11 @@
-//
-//  ContentView.swift
-//  FindVaccineCenter
-//
-//  Created by Yumin Chu on 6/2/24.
-//
-
 import SwiftUI
 import MapKit
 
 import ComposableArchitecture
 
-struct AppCore: Reducer {
+@Reducer
+struct AppCore {
   struct State: Equatable {
-    let id = UUID()
     var vaccinations: VaccinationCenterEntity?
     var searchResults: [VaccinationCenterEntity.Vaccnination]?
     var error: VCError?
@@ -35,8 +28,7 @@ struct AppCore: Reducer {
     BindingReducer()
     Reduce { state, action in
       switch action {
-      case .binding:
-        break
+      case .binding: break
         
       case .didTapSearchButton:
         return .run { send in
@@ -116,12 +108,6 @@ struct AppView: View {
   }
 }
 
-#Preview {
-  AppView(store: .init(initialState: AppCore.State()) {
-    AppCore()
-  })
-}
-
 private extension AppView {
   var searchView: some View {
     VStack {
@@ -157,4 +143,10 @@ private extension AppView {
         .shadow(radius: 10)
     }
   }
+}
+
+#Preview {
+  AppView(store: .init(initialState: AppCore.State()) {
+    AppCore()
+  })
 }
