@@ -2,7 +2,7 @@ import Foundation
 import MapKit
 
 /// 예방접종 센터 상세 화면 데이터
-struct CenterDetailEntity: Equatable, Identifiable {
+struct CenterDetailEntity: Identifiable, Equatable {
   /// 예방 접종 센터명
   let name: String
   /// 위치
