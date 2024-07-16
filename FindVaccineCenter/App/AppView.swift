@@ -19,7 +19,6 @@ struct AppCore {
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
     case didTapSearchButton
-    case changeLocation(Double, Double)
     
     case requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
@@ -35,8 +34,6 @@ struct AppCore {
         return .run { send in
           await send(.requestVaccination)
         }
-        
-      case let .changeLocation(lat, lng): break
         
       case .requestVaccination:
         state.error = nil
