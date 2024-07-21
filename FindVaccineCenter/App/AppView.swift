@@ -83,6 +83,8 @@ struct AppCore {
           }
         }
         
+        state.highlightLocation = state.entity.first
+        
       case let ._vaccinationResponse(.failure(error)):
         state.error = error
       }
@@ -124,7 +126,13 @@ struct AppView: View {
     ZStack {
       MapView
       
+      VStack(spacing: 0) {
       SearchView
+        
+        Spacer()
+        
+        CenterPreview
+      }
     }
     .onAppear {
       locationService.initialize()
@@ -152,7 +160,7 @@ private extension AppView {
     ) { location in
       MapAnnotation(coordinate: location.coordinate) {
         MapAnnotationView()
-          .shadow(radius: 10)
+          .shadow(color: Color.indigo, radius: 8)
           .scaleEffect(location == viewStore.highlightLocation ? 1 : 0.8)
           .onTapGesture {
             store.send(.tapMarker(location))
@@ -189,6 +197,27 @@ private extension AppView {
       .padding(.horizontal, 16)
       
       Spacer()
+    }
+  }
+  
+  var CenterPreview: some View {
+    ZStack {
+      ForEach(viewStore.entity) {
+        if $0 == viewStore.highlightLocation {
+          CenterPreviewView(store: .init(
+            initialState: CenterPreviewCore.State(entity: $0)
+          ) {
+            CenterPreviewCore()
+          })
+          .shadow(radius: 20)
+          .padding([.horizontal, .bottom], 20)
+          .frame(maxWidth: .infinity)
+          .transition(.asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading)
+          ))
+        }
+      }
     }
   }
 }
