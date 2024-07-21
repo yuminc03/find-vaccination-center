@@ -11,6 +11,8 @@ struct AppCore {
     var error: VCError?
     var highlightLocation: CenterDetailEntity?
     
+    var centerPreview: CenterPreviewCore.State?
+    
     @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
   }
@@ -19,6 +21,7 @@ struct AppCore {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
+    case centerPreview(CenterPreviewCore.Action)
     case tapSearchButton
     case tapMarker(CenterDetailEntity)
     
@@ -31,6 +34,9 @@ struct AppCore {
     Reduce { state, action in
       switch action {
       case .binding: break
+      case .centerPreview: break
+      case let .centerPreview(.tapViewMoreButton): break
+      case let .centerPreview(.tapNextButton): break
         
       case .tapSearchButton:
         return .run { send in
@@ -39,6 +45,7 @@ struct AppCore {
         
       case let .tapMarker(location):
         state.highlightLocation = location
+        state.centerPreview = .init(entity: location)
         
       case .requestVaccination:
         state.error = nil
@@ -84,12 +91,18 @@ struct AppCore {
         }
         
         state.highlightLocation = state.entity.first
+        guard let location = state.highlightLocation else { break }
+        
+        state.centerPreview = .init(entity: location)
         
       case let ._vaccinationResponse(.failure(error)):
         state.error = error
       }
       
       return .none
+    }
+    .ifLet(\.centerPreview, action: \.centerPreview) {
+      CenterPreviewCore()
     }
   }
 }
@@ -127,7 +140,7 @@ struct AppView: View {
       MapView
       
       VStack(spacing: 0) {
-      SearchView
+        SearchView
         
         Spacer()
         
@@ -204,18 +217,19 @@ private extension AppView {
     ZStack {
       ForEach(viewStore.entity) {
         if $0 == viewStore.highlightLocation {
-          CenterPreviewView(store: .init(
-            initialState: CenterPreviewCore.State(entity: $0)
-          ) {
-            CenterPreviewCore()
-          })
-          .shadow(radius: 20)
-          .padding([.horizontal, .bottom], 20)
-          .frame(maxWidth: .infinity)
-          .transition(.asymmetric(
-            insertion: .move(edge: .trailing),
-            removal: .move(edge: .leading)
-          ))
+          IfLetStore(store.scope(
+            state: \.centerPreview,
+            action: \.centerPreview
+          )) {
+            CenterPreviewView(store: $0)
+            .shadow(radius: 20)
+            .padding([.horizontal, .bottom], 20)
+            .frame(maxWidth: .infinity)
+            .transition(.asymmetric(
+              insertion: .move(edge: .trailing),
+              removal: .move(edge: .leading)
+            ))
+          }
         }
       }
     }
