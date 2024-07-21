@@ -9,6 +9,7 @@ struct AppCore {
     var vaccinations: VaccinationCenterEntity?
     var entity: [CenterDetailEntity] = []
     var error: VCError?
+    var highlightLocation: CenterDetailEntity?
     
     @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
@@ -18,7 +19,8 @@ struct AppCore {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
-    case didTapSearchButton
+    case tapSearchButton
+    case tapMarker(CenterDetailEntity)
     
     case requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
@@ -30,10 +32,13 @@ struct AppCore {
       switch action {
       case .binding: break
         
-      case .didTapSearchButton:
+      case .tapSearchButton:
         return .run { send in
           await send(.requestVaccination)
         }
+        
+      case let .tapMarker(location):
+        state.highlightLocation = location
         
       case .requestVaccination:
         state.error = nil
@@ -147,6 +152,11 @@ private extension AppView {
     ) { location in
       MapAnnotation(coordinate: location.coordinate) {
         MapAnnotationView()
+          .shadow(radius: 10)
+          .scaleEffect(location == viewStore.highlightLocation ? 1 : 0.8)
+          .onTapGesture {
+            store.send(.tapMarker(location))
+          }
       }
     }
     .ignoresSafeArea()
@@ -164,7 +174,7 @@ private extension AppView {
           .foregroundColor(.black)
         
         Button {
-          store.send(.didTapSearchButton)
+          store.send(.tapSearchButton)
         } label: {
           Image(systemName: .systemImage(.magnifyingglass))
             .resizable()
