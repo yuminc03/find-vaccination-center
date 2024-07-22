@@ -7,7 +7,7 @@ struct DetailCore: Reducer {
   struct State: Equatable {
     let entity: VaccinationCenterDetailEntity
   }
-  
+
   enum Action {
     case delegate(Delegate)
     case tapCloseButton
@@ -34,6 +34,8 @@ struct DetailCore: Reducer {
 struct DetailView: View {
   private let store: StoreOf<DetailCore>
   @ObservedObject private var viewStore: ViewStoreOf<DetailCore>
+  
+  @Environment(\.openURL) private var openURL
   
   init(store: StoreOf<DetailCore>) {
     self.store = store
@@ -95,15 +97,17 @@ private extension DetailView {
       
       Divider()
       
-      HStack(alignment: .top, spacing: 20) {
-        centerLabel(
-          viewStore.entity.phoneNumber,
-          image: .systemImage(.phoneFill)
-        )
-        
-        Spacer()
-        
-        CallButton
+      if viewStore.entity.phoneNumber.isEmpty == false {
+        HStack(alignment: .top, spacing: 20) {
+          centerLabel(
+            viewStore.entity.phoneNumber,
+            image: .systemImage(.phoneFill)
+          )
+          
+          Spacer()
+          
+          CallButton
+        }
       }
       
       Spacer()
@@ -115,7 +119,7 @@ private extension DetailView {
   
   var CloseButton: some View {
     Button {
-      
+      store.send(.tapCloseButton)
     } label: {
       Image(systemName: .systemImage(.xmark))
         .size(16)
@@ -129,7 +133,9 @@ private extension DetailView {
   
   var CallButton: some View {
     Button {
-      
+      if let url = URL(string: "tel://\(viewStore.entity.phoneNumber)") {
+        openURL(url)
+      }
     } label: {
       Image(systemName: .systemImage(.phoneCircleFill))
         .size(50)
