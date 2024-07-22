@@ -3,7 +3,7 @@ import ComposableArchitecture
 @Reducer
 struct CenterPreviewCore {
   struct State: Equatable {
-    let entity: CenterDetailEntity
+    let entity: CenterPreviewEntity
   }
   
   enum Action {

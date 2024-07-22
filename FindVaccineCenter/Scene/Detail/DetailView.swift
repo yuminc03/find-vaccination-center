@@ -5,15 +5,15 @@ import ComposableArchitecture
 
 struct DetailCore: Reducer {
   struct State: Equatable {
-    let entity: CenterDetailEntity
+    let entity: VaccinationCenterDetailEntity
   }
   
   enum Action {
     case delegate(Delegate)
-    case tapBackButton
+    case tapCloseButton
     
     enum Delegate {
-      case back
+      case close
     }
   }
   
@@ -21,10 +21,8 @@ struct DetailCore: Reducer {
     Reduce { state, action in
       switch action {
       case .delegate: break
-      case .tapBackButton:
-        return .run { send in
-          await send(.delegate(.back))
-        }
+      case .tapCloseButton:
+        return .send(.delegate(.close))
       }
       
       return .none
@@ -48,8 +46,9 @@ struct DetailView: View {
       
       BottomSheet
     }
-    .VCNaviBar(title: "\(viewStore.entity.name)") {
-      store.send(.tapBackButton)
+    .ignoresSafeArea()
+    .overlay(alignment: .topTrailing) {
+      CloseButton
     }
   }
 }
@@ -71,34 +70,83 @@ private extension DetailView {
       }
     }
     .allowsHitTesting(false)
-    .ignoresSafeArea()
+    .frame(height: UIScreen.main.bounds.height / 2)
   }
   
   var BottomSheet: some View {
-    VStack(spacing: 20) {
-      RoundedRectangle(cornerRadius: 5)
-        .fill(.gray300)
-        .frame(width: 50, height: 5)
-        .padding(.top, 20)
+    VStack(alignment: .leading, spacing: 10) {
+      Text(viewStore.entity.name)
+        .font(.system(size: 24, weight: .bold))
+        .frame(maxWidth: .infinity, alignment: .leading)
       
-      VStack(alignment: .leading, spacing: 10) {
-        Text(viewStore.entity.name)
-          .font(.system(size: 24))
-          .frame(maxWidth: .infinity, alignment: .leading)
-        Text(viewStore.entity.facilityName)
-          .font(.system(size: 14))
-        Text(viewStore.entity.address)
-          .font(.system(size: 16))
+      Text(viewStore.entity.facilityName)
+        .font(.system(size: 14))
+        .foregroundColor(.gray400)
+      
+      centerLabel(
+        "\(viewStore.entity.address) (\(viewStore.entity.zipCode))",
+        image: .systemImage(.locationFill)
+      )
+      
+      centerLabel(
+        viewStore.entity.org,
+        image: .systemImage(.docTextMagnifyingglass)
+      )
+      
+      Divider()
+      
+      HStack(alignment: .top, spacing: 20) {
+        centerLabel(
+          viewStore.entity.phoneNumber,
+          image: .systemImage(.phoneFill)
+        )
+        
+        Spacer()
+        
+        CallButton
       }
-      .foregroundColor(.black)
       
       Spacer()
     }
-    .padding(.horizontal, 20)
-    .frame(height: 200)
+    .foregroundColor(.black)
+    .padding(20)
     .background(.white)
-    .cornerRadius(20, corners: [.topLeft, .topRight])
-    .shadow(radius: 10, y: -18)
+  }
+  
+  var CloseButton: some View {
+    Button {
+      
+    } label: {
+      Image(systemName: .systemImage(.xmark))
+        .size(16)
+        .foregroundColor(.black)
+        .padding(20)
+        .background(.thinMaterial)
+        .cornerRadius(10)
+        .padding([.top, .trailing], 20)
+    }
+  }
+  
+  var CallButton: some View {
+    Button {
+      
+    } label: {
+      Image(systemName: .systemImage(.phoneCircleFill))
+        .size(50)
+        .foregroundColor(.green)
+    }
+  }
+  
+  func centerLabel(_ title: String, image: String) -> some View {
+    Label {
+      Text(title)
+        .font(.system(size: 16))
+        .foregroundColor(.black)
+    } icon: {
+      Image(systemName: image)
+        .size(15)
+        .foregroundColor(.blue100)
+    }
   }
 }
 

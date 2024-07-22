@@ -7,9 +7,9 @@ import ComposableArchitecture
 struct AppCore {
   struct State: Equatable {
     var vaccinations: VaccinationCenterEntity?
-    var entity: [CenterDetailEntity] = []
+    var entity: [CenterPreviewEntity] = []
     var error: VCError?
-    var highlightLocation: CenterDetailEntity?
+    var highlightLocation: CenterPreviewEntity?
     
     var centerPreview: CenterPreviewCore.State?
     
@@ -23,7 +23,7 @@ struct AppCore {
     case binding(BindingAction<State>)
     case centerPreview(CenterPreviewCore.Action)
     case tapSearchButton
-    case tapMarker(CenterDetailEntity)
+    case tapMarker(CenterPreviewEntity)
     
     case requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
@@ -70,8 +70,7 @@ struct AppCore {
                 latitude: Double($0.lat) ?? 0,
                 longitude: Double($0.lng) ?? 0
               ),
-              address: $0.address,
-              facilityName: $0.facilityName
+              address: $0.address
             ))
           }
         } else {
@@ -83,8 +82,7 @@ struct AppCore {
                   latitude: Double($0.lat) ?? 0,
                   longitude: Double($0.lng) ?? 0
                 ),
-                address: $0.address,
-                facilityName: $0.facilityName
+                address: $0.address
               )
             )
           }
