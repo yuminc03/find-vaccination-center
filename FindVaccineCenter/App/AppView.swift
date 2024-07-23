@@ -6,6 +6,8 @@ import ComposableArchitecture
 @Reducer
 struct AppCore {
   struct State: Equatable {
+    let id = UUID()
+    
     var vaccinations: VaccinationCenterEntity?
     var entity: [CenterPreviewEntity] = []
     var error: VCError?

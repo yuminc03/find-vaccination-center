@@ -4,6 +4,8 @@ import ComposableArchitecture
 
 struct SearchCore: Reducer {
   struct State: Equatable {
+    let id = UUID()
+    
     @BindingState var searchText = ""
     let searchList: [SearchListItemEntity] = [
       .init(

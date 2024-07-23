@@ -16,6 +16,9 @@
 		8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF93E2C230F18005CC85E /* NetworkManager.swift */; };
 		8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */; };
 		8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */; };
+		8D5122232C4FE5DC009402D2 /* MainCooridnator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5122222C4FE5DC009402D2 /* MainCooridnator.swift */; };
+		8D5122292C4FE726009402D2 /* Perception in Frameworks */ = {isa = PBXBuildFile; productRef = 8D5122282C4FE726009402D2 /* Perception */; };
+		8D51222C2C4FE802009402D2 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D51222B2C4FE802009402D2 /* MainScreen.swift */; };
 		8D5540552C4E92C200392DAF /* VaccinationCenterDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5540542C4E92C200392DAF /* VaccinationCenterDetailEntity.swift */; };
 		8D56E4222C40148E00A915A4 /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D56E4212C40148E00A915A4 /* MapAnnotationView.swift */; };
 		8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855A4C2C397F9E003CFF0B /* SearchView.swift */; };
@@ -82,6 +85,8 @@
 		8D3FF93E2C230F18005CC85E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
 		8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterEntity.swift; sourceTree = "<group>"; };
+		8D5122222C4FE5DC009402D2 /* MainCooridnator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCooridnator.swift; sourceTree = "<group>"; };
+		8D51222B2C4FE802009402D2 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		8D5540542C4E92C200392DAF /* VaccinationCenterDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterDetailEntity.swift; sourceTree = "<group>"; };
 		8D56E4212C40148E00A915A4 /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		8D7ACBCB2C0DFD8000B6A0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 				8D855A5A2C3A4FAD003CFF0B /* rswift in Frameworks */,
 				8DFCCA2A2C283F44000937E2 /* Alamofire in Frameworks */,
 				8D855A582C3A4FAD003CFF0B /* RswiftLibrary in Frameworks */,
+				8D5122292C4FE726009402D2 /* Perception in Frameworks */,
 				8DFEC8992C1560710021A098 /* ComposableArchitecture in Frameworks */,
 				05BFDF1B2C4FA22800BEF0E7 /* TCACoordinators in Frameworks */,
 				396FC208CCE6C869A743258E /* Pods_FindVaccineCenter.framework in Frameworks */,
@@ -183,6 +189,7 @@
 			children = (
 				8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */,
 				8D9614082C0CAC62003B4BA9 /* AppView.swift */,
+				8D5122202C4FE542009402D2 /* Coordinator */,
 				8DE763D02C4D2DFE003354C1 /* Component */,
 				05AAE12D2C36956D001846D4 /* Entity */,
 			);
@@ -242,6 +249,15 @@
 				8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		8D5122202C4FE542009402D2 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8D5122222C4FE5DC009402D2 /* MainCooridnator.swift */,
+				8D51222B2C4FE802009402D2 /* MainScreen.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		8D56E41E2C40147200A915A4 /* Component */ = {
@@ -453,6 +469,7 @@
 				8D855A592C3A4FAD003CFF0B /* rswift */,
 				05BFDF1A2C4FA22800BEF0E7 /* TCACoordinators */,
 				05BFDF202C4FA36F00BEF0E7 /* FlowStacks */,
+				8D5122282C4FE726009402D2 /* Perception */,
 			);
 			productName = FindVaccineCenter;
 			productReference = 8D9614032C0CAC62003B4BA9 /* FindVaccineCenter.app */;
@@ -535,6 +552,7 @@
 				8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */,
 				05BFDF192C4FA22800BEF0E7 /* XCRemoteSwiftPackageReference "TCACoordinators" */,
 				05BFDF1F2C4FA36F00BEF0E7 /* XCRemoteSwiftPackageReference "FlowStacks" */,
+				8D5122272C4FE726009402D2 /* XCRemoteSwiftPackageReference "swift-perception" */,
 			);
 			productRefGroup = 8D9614042C0CAC62003B4BA9 /* Products */;
 			projectDirPath = "";
@@ -693,12 +711,14 @@
 				8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */,
 				8D5540552C4E92C200392DAF /* VaccinationCenterDetailEntity.swift in Sources */,
 				8DE763D52C4D3CB6003354C1 /* CenterPreviewCore.swift in Sources */,
+				8D51222C2C4FE802009402D2 /* MainScreen.swift in Sources */,
 				8D9614092C0CAC62003B4BA9 /* AppView.swift in Sources */,
 				8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */,
 				8D855A522C398645003CFF0B /* Image+.swift in Sources */,
 				8D9614072C0CAC62003B4BA9 /* FindVaccineCenterApp.swift in Sources */,
 				8DD3566B2C4273D20072DAA0 /* RoundedCornerShape.swift in Sources */,
 				8DE763D22C4D2E29003354C1 /* CenterPreviewView.swift in Sources */,
+				8D5122232C4FE5DC009402D2 /* MainCooridnator.swift in Sources */,
 				8D3FF9452C231735005CC85E /* VaccinationCenterEntity.swift in Sources */,
 				05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */,
 				8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */,
@@ -1067,7 +1087,7 @@
 			repositoryURL = "https://github.com/johnpatrickmorgan/TCACoordinators";
 			requirement = {
 				kind = exactVersion;
-				version = 0.8.0;
+				version = 0.9.0;
 			};
 		};
 		05BFDF1F2C4FA36F00BEF0E7 /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
@@ -1076,6 +1096,14 @@
 			requirement = {
 				kind = exactVersion;
 				version = 0.3.6;
+			};
+		};
+		8D5122272C4FE726009402D2 /* XCRemoteSwiftPackageReference "swift-perception" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-perception";
+			requirement = {
+				kind = exactVersion;
+				version = 1.1.4;
 			};
 		};
 		8D855A562C3A4FAD003CFF0B /* XCRemoteSwiftPackageReference "R" */ = {
@@ -1099,7 +1127,7 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
 				kind = exactVersion;
-				version = 1.5.0;
+				version = 1.9.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1114,6 +1142,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05BFDF1F2C4FA36F00BEF0E7 /* XCRemoteSwiftPackageReference "FlowStacks" */;
 			productName = FlowStacks;
+		};
+		8D5122282C4FE726009402D2 /* Perception */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D5122272C4FE726009402D2 /* XCRemoteSwiftPackageReference "swift-perception" */;
+			productName = Perception;
 		};
 		8D855A572C3A4FAD003CFF0B /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;

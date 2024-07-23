@@ -5,6 +5,7 @@ import ComposableArchitecture
 
 struct DetailCore: Reducer {
   struct State: Equatable {
+    let id = UUID()
     let entity: VaccinationCenterDetailEntity
   }
 
