@@ -6,7 +6,7 @@ import TCACoordinators
 @Reducer
 struct MainScreen {
   enum State: Equatable, Identifiable {
-    case map(AppCore.State)
+    case map(MapCore.State)
     case search(SearchCore.State)
     case detail(DetailCore.State)
     
@@ -25,14 +25,14 @@ struct MainScreen {
   }
   
   enum Action {
-    case map(AppCore.Action)
+    case map(MapCore.Action)
     case search(SearchCore.Action)
     case detail(DetailCore.Action)
   }
   
   var body: some ReducerOf<Self> {
     Scope(state: \.map, action: \.map) {
-      AppCore()
+      MapCore()
     }
     Scope(state: \.search, action: \.search) {
       SearchCore()

@@ -4,7 +4,7 @@ import MapKit
 import ComposableArchitecture
 
 @Reducer
-struct AppCore {
+struct MapCore {
   struct State: Equatable {
     let id = UUID()
     
@@ -107,9 +107,9 @@ struct AppCore {
   }
 }
 
-struct AppView: View {
-  private let store: StoreOf<AppCore>
-  @ObservedObject private var viewStore: ViewStoreOf<AppCore>
+struct MapView: View {
+  private let store: StoreOf<MapCore>
+  @ObservedObject private var viewStore: ViewStoreOf<MapCore>
   
   @StateObject private var locationService = LocationAuthorityService.shared
   
@@ -130,7 +130,7 @@ struct AppView: View {
     )
   }
   
-  init(store: StoreOf<AppCore>) {
+  init(store: StoreOf<MapCore>) {
     self.store = store
     self.viewStore = .init(store, observe: { $0 })
   }
@@ -165,7 +165,7 @@ struct AppView: View {
   }
 }
 
-private extension AppView {
+private extension MapView {
   var MapView: some View {
     Map(
       coordinateRegion: region,
@@ -237,7 +237,7 @@ private extension AppView {
 }
 
 #Preview {
-  AppView(store: .init(initialState: AppCore.State()) {
-    AppCore()
+  MapView(store: .init(initialState: MapCore.State()) {
+    MapCore()
   })
 }

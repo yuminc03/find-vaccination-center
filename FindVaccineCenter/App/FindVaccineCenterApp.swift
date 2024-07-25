@@ -11,8 +11,8 @@ import SwiftUI
 struct FindVaccineCenterApp: App {
   var body: some Scene {
     WindowGroup {
-      AppView(store: .init(initialState: AppCore.State()) {
-        AppCore()
+      MapView(store: .init(initialState: MapCore.State()) {
+        MapCore()
       })
     }
   }

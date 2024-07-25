@@ -39,7 +39,7 @@ struct MainCoordinatorView: View {
           CaseLet(
             \MainScreen.State.map,
              action: MainScreen.Action.map,
-             then: AppView.init
+             then: MapView.init
           )
           
         case .search:
