@@ -13,8 +13,6 @@ struct MapCore {
     var error: VCError?
     var highlightLocation: CenterPreviewEntity?
     
-    var centerPreview: CenterPreviewCore.State?
-    
     @BindingState var locationError: VCError.LocationError?
     @BindingState var searchText = ""
   }
@@ -23,12 +21,17 @@ struct MapCore {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<State>)
-    case centerPreview(CenterPreviewCore.Action)
+    case delegate(Delegate)
     case tapSearchButton
     case tapMarker(CenterPreviewEntity)
     
     case requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
+    
+    enum Delegate: Equatable {
+      case tapViewMoreButton
+      case tapNextButton(CenterPreviewEntity)
+    }
   }
   
   var body: some ReducerOf<Self> {
@@ -36,10 +39,7 @@ struct MapCore {
     Reduce { state, action in
       switch action {
       case .binding: break
-      case .centerPreview: break
-      case let .centerPreview(.tapViewMoreButton): break
-      case let .centerPreview(.tapNextButton): break
-        
+      case .delegate: break
       case .tapSearchButton:
         return .run { send in
           await send(.requestVaccination)
@@ -47,7 +47,6 @@ struct MapCore {
         
       case let .tapMarker(location):
         state.highlightLocation = location
-        state.centerPreview = .init(entity: location)
         
       case .requestVaccination:
         state.error = nil
@@ -93,16 +92,11 @@ struct MapCore {
         state.highlightLocation = state.entity.first
         guard let location = state.highlightLocation else { break }
         
-        state.centerPreview = .init(entity: location)
-        
       case let ._vaccinationResponse(.failure(error)):
         state.error = error
       }
       
       return .none
-    }
-    .ifLet(\.centerPreview, action: \.centerPreview) {
-      CenterPreviewCore()
     }
   }
 }
@@ -215,21 +209,20 @@ private extension MapView {
   
   var CenterPreview: some View {
     ZStack {
-      ForEach(viewStore.entity) {
-        if $0 == viewStore.highlightLocation {
-          IfLetStore(store.scope(
-            state: \.centerPreview,
-            action: \.centerPreview
-          )) {
-            CenterPreviewView(store: $0)
-            .shadow(radius: 20)
-            .padding([.horizontal, .bottom], 20)
-            .frame(maxWidth: .infinity)
-            .transition(.asymmetric(
-              insertion: .move(edge: .trailing),
-              removal: .move(edge: .leading)
-            ))
+      ForEach(viewStore.entity) { location in
+        if location == viewStore.highlightLocation {
+          CenterPreviewView(entity: location) {
+            store.send(.delegate(.tapViewMoreButton))
+          } nextAction: {
+            store.send(.delegate(.tapNextButton(location)))
           }
+          .shadow(radius: 20)
+          .padding([.horizontal, .bottom], 20)
+          .frame(maxWidth: .infinity)
+          .transition(.asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading)
+          ))
         }
       }
     }
