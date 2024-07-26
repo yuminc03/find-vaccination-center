@@ -5,25 +5,25 @@ import ComposableArchitecture
 
 /// 병원 상세 정보 화면
 struct DetailView: View {
-  private let store: StoreOf<DetailCore>
-  @ObservedObject private var viewStore: ViewStoreOf<DetailCore>
+  @Perception.Bindable private var store: StoreOf<DetailCore>
   
   @Environment(\.openURL) private var openURL
   
   init(store: StoreOf<DetailCore>) {
     self.store = store
-    self.viewStore = ViewStore(store, observe: { $0 })
   }
   
   var body: some View {
-    VStack(spacing: 0) {
-      MapView
-      
-      BottomSheet
-    }
-    .ignoresSafeArea()
-    .overlay(alignment: .topTrailing) {
-      CloseButton
+    WithPerceptionTracking {
+      VStack(spacing: 0) {
+        MapView
+        
+        BottomSheet
+      }
+      .ignoresSafeArea()
+      .overlay(alignment: .topTrailing) {
+        CloseButton
+      }
     }
   }
 }
@@ -33,11 +33,11 @@ private extension DetailView {
     Map(
       coordinateRegion: .constant(
         MKCoordinateRegion(
-          center: viewStore.entity.coordinate,
+          center: store.entity.coordinate,
           span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         )
       ),
-      annotationItems: [viewStore.entity]
+      annotationItems: [store.entity]
     ) { location in
       MapAnnotation(coordinate: location.coordinate) {
         MapAnnotationView()
@@ -50,30 +50,30 @@ private extension DetailView {
   
   var BottomSheet: some View {
     VStack(alignment: .leading, spacing: 10) {
-      Text(viewStore.entity.name)
+      Text(store.entity.name)
         .font(.system(size: 24, weight: .bold))
         .frame(maxWidth: .infinity, alignment: .leading)
       
-      Text(viewStore.entity.facilityName)
+      Text(store.entity.facilityName)
         .font(.system(size: 14))
         .foregroundColor(.gray400)
       
       centerLabel(
-        "\(viewStore.entity.address) (\(viewStore.entity.zipCode))",
+        "\(store.entity.address) (\(store.entity.zipCode))",
         image: .systemImage(.locationFill)
       )
       
       centerLabel(
-        viewStore.entity.org,
+        store.entity.org,
         image: .systemImage(.docTextMagnifyingglass)
       )
       
       Divider()
       
-      if viewStore.entity.phoneNumber.isEmpty == false {
+      if store.entity.phoneNumber.isEmpty == false {
         HStack(alignment: .top, spacing: 20) {
           centerLabel(
-            viewStore.entity.phoneNumber,
+            store.entity.phoneNumber,
             image: .systemImage(.phoneFill)
           )
           
@@ -106,7 +106,7 @@ private extension DetailView {
   
   var CallButton: some View {
     Button {
-      if let url = URL(string: "tel://\(viewStore.entity.phoneNumber)") {
+      if let url = URL(string: "tel://\(store.entity.phoneNumber)") {
         openURL(url)
       }
     } label: {

@@ -2,7 +2,9 @@ import Foundation
 
 import ComposableArchitecture
 
-struct DetailCore: Reducer {
+@Reducer
+struct DetailCore {
+  @ObservableState
   struct State: Equatable {
     let id = UUID()
     let entity: VaccinationCenterDetailEntity
