@@ -72,7 +72,11 @@ private extension CenterPreviewView {
     foregroundColor: Color, 
     action: @escaping () -> Void
   ) -> some View {
-    Button(action: action) {
+    Button {
+      withAnimation(.easeInOut) {
+        action()
+      }
+    } label: {
       Text(title)
         .font(.system(size: 14, weight: .bold))
         .foregroundColor(foregroundColor)

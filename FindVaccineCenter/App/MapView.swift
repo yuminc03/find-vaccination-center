@@ -102,7 +102,7 @@ struct MapCore {
         } else {
           state.viewDidLoad = true
           return .run { send in
-            try await Task.sleep(seconds: 3.0)
+            try await Task.sleep(seconds: 1.0)
             await send(._updateMapRegion(region))
           }
         }
