@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053239982C5399B900A4631D /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053239972C5399B900A4631D /* DetailCore.swift */; };
 		05AAE12F2C369592001846D4 /* SearchListItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */; };
 		05BFDF1B2C4FA22800BEF0E7 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFDF1A2C4FA22800BEF0E7 /* TCACoordinators */; };
 		05BFDF212C4FA36F00BEF0E7 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFDF202C4FA36F00BEF0E7 /* FlowStacks */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		01C4CB78A69F956989D91057 /* Pods-FindVaccineCenterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindVaccineCenterTests.release.xcconfig"; path = "Target Support Files/Pods-FindVaccineCenterTests/Pods-FindVaccineCenterTests.release.xcconfig"; sourceTree = "<group>"; };
+		053239972C5399B900A4631D /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
 		05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListItemEntity.swift; sourceTree = "<group>"; };
 		05C2844C2C29546400655C84 /* LocationAuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorityService.swift; sourceTree = "<group>"; };
 		05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
@@ -303,9 +305,10 @@
 		8D855A6A2C3A7523003CFF0B /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				053239972C5399B900A4631D /* DetailCore.swift */,
+				8D855A6D2C3A75E0003CFF0B /* DetailView.swift */,
 				8D56E41E2C40147200A915A4 /* Component */,
 				8DCE46CC2C3C1535007AC2F4 /* Entity */,
-				8D855A6D2C3A75E0003CFF0B /* DetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */,
 				8D8F3F322C1F1FA10059C3C0 /* TargetType.swift in Sources */,
 				8D855A742C3A9093003CFF0B /* NavigationBar.swift in Sources */,
+				053239982C5399B900A4631D /* DetailCore.swift in Sources */,
 				8DCE46CF2C3C1E3B007AC2F4 /* CenterPreviewEntity.swift in Sources */,
 				8DFCCA2E2C285C44000937E2 /* Data+.swift in Sources */,
 				8DD3566E2C42A8E50072DAA0 /* UINavigationController+.swift in Sources */,
@@ -905,7 +909,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -940,7 +944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

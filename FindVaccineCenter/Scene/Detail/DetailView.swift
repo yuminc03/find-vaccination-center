@@ -3,27 +3,6 @@ import MapKit
 
 import ComposableArchitecture
 
-struct DetailCore: Reducer {
-  struct State: Equatable {
-    let id = UUID()
-    let entity: VaccinationCenterDetailEntity
-  }
-
-  enum Action {
-    case tapCloseButton
-  }
-  
-  var body: some ReducerOf<Self> {
-    Reduce { state, action in
-      switch action {
-      case .tapCloseButton: break
-      }
-      
-      return .none
-    }
-  }
-}
-
 /// 병원 상세 정보 화면
 struct DetailView: View {
   private let store: StoreOf<DetailCore>
