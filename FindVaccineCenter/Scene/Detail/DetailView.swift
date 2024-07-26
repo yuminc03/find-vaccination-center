@@ -10,20 +10,13 @@ struct DetailCore: Reducer {
   }
 
   enum Action {
-    case delegate(Delegate)
     case tapCloseButton
-    
-    enum Delegate {
-      case close
-    }
   }
   
   var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
-      case .delegate: break
-      case .tapCloseButton:
-        return .send(.delegate(.close))
+      case .tapCloseButton: break
       }
       
       return .none

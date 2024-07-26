@@ -20,6 +20,9 @@ struct MainCoordinator {
       case let .router(.routeAction(id: _, action: .map(.tapViewMoreButton(location)))):
         state.routes.presentSheet(.detail(.init(entity: location)))
         
+      case .router(.routeAction(id: _, action: .detail(.tapCloseButton))):
+        state.routes.dismiss()
+        
       default: break
       }
       
