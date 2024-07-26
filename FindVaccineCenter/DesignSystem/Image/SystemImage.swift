@@ -9,6 +9,7 @@ enum SystemImage: String {
   case docTextMagnifyingglass = "doc.text.magnifyingglass"
   case phoneFill = "phone.fill"
   case phoneCircleFill = "phone.circle.fill"
+  case stethoscopeCircleFill = "stethoscope.circle.fill"
 }
 
 extension String {
