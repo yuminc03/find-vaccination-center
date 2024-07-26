@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		053239982C5399B900A4631D /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053239972C5399B900A4631D /* DetailCore.swift */; };
+		0532399C2C539ADB00A4631D /* MapCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532399B2C539ADB00A4631D /* MapCore.swift */; };
 		05AAE12F2C369592001846D4 /* SearchListItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */; };
 		05BFDF1B2C4FA22800BEF0E7 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFDF1A2C4FA22800BEF0E7 /* TCACoordinators */; };
 		05BFDF212C4FA36F00BEF0E7 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFDF202C4FA36F00BEF0E7 /* FlowStacks */; };
@@ -47,7 +48,6 @@
 		8DD3566B2C4273D20072DAA0 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3566A2C4273D20072DAA0 /* RoundedCornerShape.swift */; };
 		8DD3566E2C42A8E50072DAA0 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3566D2C42A8E50072DAA0 /* UINavigationController+.swift */; };
 		8DE763D22C4D2E29003354C1 /* CenterPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE763D12C4D2E29003354C1 /* CenterPreviewView.swift */; };
-		8DE763D52C4D3CB6003354C1 /* CenterPreviewCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE763D42C4D3CB6003354C1 /* CenterPreviewCore.swift */; };
 		8DFCCA2A2C283F44000937E2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8DFCCA292C283F44000937E2 /* Alamofire */; };
 		8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCCA2B2C28485F000937E2 /* String+.swift */; };
 		8DFCCA2E2C285C44000937E2 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCCA2D2C285C44000937E2 /* Data+.swift */; };
@@ -77,6 +77,7 @@
 /* Begin PBXFileReference section */
 		01C4CB78A69F956989D91057 /* Pods-FindVaccineCenterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindVaccineCenterTests.release.xcconfig"; path = "Target Support Files/Pods-FindVaccineCenterTests/Pods-FindVaccineCenterTests.release.xcconfig"; sourceTree = "<group>"; };
 		053239972C5399B900A4631D /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
+		0532399B2C539ADB00A4631D /* MapCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCore.swift; sourceTree = "<group>"; };
 		05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListItemEntity.swift; sourceTree = "<group>"; };
 		05C2844C2C29546400655C84 /* LocationAuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorityService.swift; sourceTree = "<group>"; };
 		05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		8DD3566A2C4273D20072DAA0 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		8DD3566D2C42A8E50072DAA0 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		8DE763D12C4D2E29003354C1 /* CenterPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterPreviewView.swift; sourceTree = "<group>"; };
-		8DE763D42C4D3CB6003354C1 /* CenterPreviewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterPreviewCore.swift; sourceTree = "<group>"; };
 		8DFCCA2B2C28485F000937E2 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		8DFCCA2D2C285C44000937E2 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 		8DFEC8932C149BAB0021A098 /* VCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCError.swift; sourceTree = "<group>"; };
@@ -194,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */,
+				0532399B2C539ADB00A4631D /* MapCore.swift */,
 				8D9614082C0CAC62003B4BA9 /* MapView.swift */,
 				8D5122202C4FE542009402D2 /* Coordinator */,
 				8DE763D02C4D2DFE003354C1 /* Component */,
@@ -421,7 +422,6 @@
 		8DE763D02C4D2DFE003354C1 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				8DE763D42C4D3CB6003354C1 /* CenterPreviewCore.swift */,
 				8DE763D12C4D2E29003354C1 /* CenterPreviewView.swift */,
 			);
 			path = Component;
@@ -720,12 +720,12 @@
 				8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */,
 				8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */,
 				8D5540552C4E92C200392DAF /* VaccinationCenterDetailEntity.swift in Sources */,
-				8DE763D52C4D3CB6003354C1 /* CenterPreviewCore.swift in Sources */,
 				8D51222C2C4FE802009402D2 /* MainScreen.swift in Sources */,
 				8D9614092C0CAC62003B4BA9 /* MapView.swift in Sources */,
 				8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */,
 				8D855A522C398645003CFF0B /* Image+.swift in Sources */,
 				8D9614072C0CAC62003B4BA9 /* FindVaccineCenterApp.swift in Sources */,
+				0532399C2C539ADB00A4631D /* MapCore.swift in Sources */,
 				8DD3566B2C4273D20072DAA0 /* RoundedCornerShape.swift in Sources */,
 				8DE763D22C4D2E29003354C1 /* CenterPreviewView.swift in Sources */,
 				8D5122232C4FE5DC009402D2 /* MainCooridnator.swift in Sources */,
