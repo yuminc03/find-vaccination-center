@@ -38,7 +38,7 @@ extension VaccinationAPI {
     return .authorization
   }
   
-  var task: Task {
+  var task: HTTPTask {
     switch self {
     case .vaccinationCenter:
       return .plain

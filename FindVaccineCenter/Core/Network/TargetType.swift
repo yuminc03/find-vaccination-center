@@ -7,7 +7,13 @@ protocol TargetType: URLRequestConvertible {
   var path: String { get }
   var httpMethod: HTTPMethod { get }
   var headers: [String: String]? { get }
-  var task: Task { get }
+  var task: HTTPTask { get }
+}
+
+enum HTTPTask {
+  case plain
+  case body(Encodable)
+  case upload
 }
 
 extension TargetType {
@@ -43,10 +49,4 @@ extension TargetType {
     
     return urlRequest
   }
-}
-
-enum Task {
-  case plain
-  case body(Encodable)
-  case upload
 }

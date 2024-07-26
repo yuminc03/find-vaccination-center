@@ -1,5 +1,4 @@
 import SwiftUI
-import Foundation
 import MapKit
 
 import ComposableArchitecture
@@ -14,6 +13,7 @@ struct MapCore {
     var entity: [VaccinationCenterDetailEntity] = []
     var error: VCError?
     var mapLocation: VaccinationCenterDetailEntity?
+    var viewDidLoad = false
     
     var locationError: VCError.LocationError?
     var searchText = ""
@@ -37,6 +37,7 @@ struct MapCore {
     
     case _requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
+    case _updateCurrentLocation
     case _updateMapRegion(VaccinationCenterDetailEntity)
     case _setMapRegion(MKCoordinateRegion)
   }
@@ -81,36 +82,56 @@ struct MapCore {
         }
         
       case let ._vaccinationResponse(.success(dto)):
-        let searchedData = dto.data.filter { $0.centerName.contains(state.searchText)
-        }
         state.vaccinations = dto
-        
         state.entity = []
-        if searchedData.count == 0 {
+        let data = dto.data.filter { $0.centerName.contains(state.searchText) }
+        if data.count == 0 {
           dto.data.forEach {
             state.entity.append($0.toEntity)
           }
         } else {
-          searchedData.forEach {
+          data.forEach {
             state.entity.append($0.toEntity)
           }
         }
         
         guard let region = state.entity.first else { break }
-        return .send(._updateMapRegion(region))
+        
+        if state.viewDidLoad {
+          return .send(._updateMapRegion(region))
+        } else {
+          state.viewDidLoad = true
+          return .run { send in
+            try await Task.sleep(seconds: 3.0)
+            await send(._updateMapRegion(region))
+          }
+        }
         
       case let ._vaccinationResponse(.failure(error)):
         state.error = error
         
+      case ._updateCurrentLocation:
+        guard let region = state.entity.first else { break }
+        
+        if state.viewDidLoad {
+          return .send(._updateMapRegion(region))
+        } else {
+          state.viewDidLoad = true
+          return .run { send in
+            try await Task.sleep(seconds: 3.0)
+            await send(._updateMapRegion(region))
+          }
+        }
+        
       case let ._updateMapRegion(location):
+        state.mapLocation = location
         state.mapRegion = .init(
           center: .init(
             latitude: location.coordinate.latitude,
-            longitude: location.coordinate.latitude
+            longitude: location.coordinate.longitude
           ),
           span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )
-        state.mapLocation = location
         
       case let ._setMapRegion(value):
         state.mapRegion = value
