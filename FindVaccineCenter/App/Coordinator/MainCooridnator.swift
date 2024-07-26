@@ -17,6 +17,9 @@ struct MainCoordinator {
   var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
+      case let .router(.routeAction(id: _, action: .map(.tapViewMoreButton(location)))):
+        state.routes.presentSheet(.detail(.init(entity: location)))
+        
       default: break
       }
       
@@ -29,7 +32,7 @@ struct MainCoordinator {
 }
 
 struct MainCoordinatorView: View {
-  private let store: StoreOf<MainCoordinator>
+  let store: StoreOf<MainCoordinator>
   
   var body: some View {
     TCARouter(store.scope(state: \.routes, action: \.router)) { screen in
