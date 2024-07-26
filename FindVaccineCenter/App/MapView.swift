@@ -10,7 +10,7 @@ struct MapCore {
     let id = UUID()
     
     var vaccinations: VaccinationCenterEntity?
-    var entity: [CenterPreviewEntity] = []
+    var entity: [VaccinationCenterDetailEntity] = []
     var error: VCError?
     var highlightLocation: CenterPreviewEntity?
     
@@ -66,27 +66,11 @@ struct MapCore {
         state.entity = []
         if searchedData.count == 0 {
           dto.data.forEach {
-            state.entity.append(.init(
-              name: $0.centerName,
-              coordinate: CLLocationCoordinate2D(
-                latitude: Double($0.lat) ?? 0,
-                longitude: Double($0.lng) ?? 0
-              ),
-              address: $0.address
-            ))
+            state.entity.append($0.toEntity)
           }
         } else {
           searchedData.forEach {
-            state.entity.append(
-              .init(
-                name: $0.centerName,
-                coordinate: CLLocationCoordinate2D(
-                  latitude: Double($0.lat) ?? 0,
-                  longitude: Double($0.lng) ?? 0
-                ),
-                address: $0.address
-              )
-            )
+            state.entity.append($0.toEntity)
           }
         }
         

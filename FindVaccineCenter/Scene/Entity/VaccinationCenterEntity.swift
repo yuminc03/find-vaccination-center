@@ -1,10 +1,3 @@
-//
-//  VaccinationCenterEntity.swift
-//  FindVaccineCenter
-//
-//  Created by Yumin Chu on 6/19/24.
-//
-
 import Foundation
 
 struct VaccinationCenterEntity: Equatable {
@@ -42,5 +35,22 @@ struct VaccinationCenterEntity: Equatable {
     let updatedAt: String
     /// 우편번호
     let zipCode: String
+  }
+}
+
+extension VaccinationCenterEntity.Vaccnination {
+  var toEntity: VaccinationCenterDetailEntity {
+    return .init(
+      name: centerName,
+      coordinate: .init(
+        latitude: Double(lat) ?? 0,
+        longitude: Double(lng) ?? 0
+      ),
+      address: address,
+      facilityName: facilityName,
+      org: org,
+      phoneNumber: phoneNumber,
+      zipCode: zipCode
+    )
   }
 }
