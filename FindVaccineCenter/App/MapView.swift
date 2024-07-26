@@ -5,6 +5,7 @@ import ComposableArchitecture
 
 @Reducer
 struct MapCore {
+  @ObservableState
   struct State: Equatable {
     let id = UUID()
     
@@ -13,13 +14,13 @@ struct MapCore {
     var error: VCError?
     var highlightLocation: CenterPreviewEntity?
     
-    @BindingState var locationError: VCError.LocationError?
-    @BindingState var searchText = ""
+    var locationError: VCError.LocationError?
+    var searchText = ""
   }
   
   private let repo = VaccinationCenterRepository()
   
-  enum Action: BindableAction, Equatable {
+  enum Action: BindableAction {
     case binding(BindingAction<State>)
     case delegate(Delegate)
     case tapSearchButton
@@ -102,8 +103,7 @@ struct MapCore {
 }
 
 struct MapView: View {
-  private let store: StoreOf<MapCore>
-  @ObservedObject private var viewStore: ViewStoreOf<MapCore>
+  @Perception.Bindable private var store: StoreOf<MapCore>
   
   @StateObject private var locationService = LocationAuthorityService.shared
   
@@ -126,36 +126,37 @@ struct MapView: View {
   
   init(store: StoreOf<MapCore>) {
     self.store = store
-    self.viewStore = .init(store, observe: { $0 })
   }
   
   var body: some View {
-    ZStack {
-      MapView
-      
-      VStack(spacing: 0) {
-        SearchView
+    WithPerceptionTracking {
+      ZStack {
+        MapView
         
-        Spacer()
-        
-        CenterPreview
+        VStack(spacing: 0) {
+          SearchView
+          
+          Spacer()
+          
+          CenterPreview
+        }
       }
+      .onAppear {
+        locationService.initialize()
+        store.send(._requestVaccination)
+      }
+      .onReceive(locationService.$currentLocation) {
+        guard let latitude = $0?.coordinate.latitude,
+              let longitude = $0?.coordinate.longitude
+        else { return }
+        
+        currentRegion = .init(
+          center: .init(latitude: latitude, longitude: longitude),
+          span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        )
+      }
+      .environmentObject(locationService)
     }
-    .onAppear {
-      locationService.initialize()
-      store.send(.requestVaccination)
-    }
-    .onReceive(locationService.$currentLocation) {
-      guard let latitude = $0?.coordinate.latitude,
-            let longitude = $0?.coordinate.longitude
-      else { return }
-      
-      currentRegion = .init(
-        center: .init(latitude: latitude, longitude: longitude),
-        span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
-      )
-    }
-    .environmentObject(locationService)
   }
 }
 
@@ -163,12 +164,12 @@ private extension MapView {
   var MapView: some View {
     Map(
       coordinateRegion: region,
-      annotationItems: viewStore.entity
+      annotationItems: store.entity
     ) { location in
       MapAnnotation(coordinate: location.coordinate) {
         MapAnnotationView()
           .shadow(color: Color.indigo, radius: 8)
-          .scaleEffect(location == viewStore.highlightLocation ? 1 : 0.8)
+          .scaleEffect(location == store.highlightLocation ? 1 : 0.8)
           .onTapGesture {
             store.send(.tapMarker(location))
           }
@@ -180,7 +181,7 @@ private extension MapView {
   var SearchView: some View {
     VStack(spacing: 0) {
       HStack(spacing: 10) {
-        TextField("주소를 입력해주세요", text: viewStore.$searchText)
+        TextField("주소를 입력해주세요", text: $store.searchText)
           .padding(.horizontal, 20)
           .padding(.vertical, 15)
           .background(.white)
