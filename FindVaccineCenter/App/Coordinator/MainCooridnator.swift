@@ -23,6 +23,9 @@ struct MainCoordinator {
       case .router(.routeAction(id: _, action: .detail(.tapCloseButton))):
         state.routes.dismiss()
         
+      case .router(.routeAction(id: _, action: .map(.tapSearchBar))):
+        state.routes.push(.search(.init()))
+        
       default: break
       }
       

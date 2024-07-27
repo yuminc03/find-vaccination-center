@@ -73,13 +73,17 @@ private extension MapView {
   var SearchView: some View {
     VStack(spacing: 0) {
       HStack(spacing: 10) {
-        TextField("주소를 입력해주세요", text: $store.searchText)
+        Text("주소를 입력해주세요")
           .padding(.horizontal, 20)
           .padding(.vertical, 15)
+          .foregroundColor(.gray200)
+          .frame(maxWidth: .infinity, alignment: .leading)
           .background(.white)
           .clipShape(RoundedRectangle(cornerRadius: 10))
           .shadow(radius: 10)
-          .foregroundColor(.black)
+          .onTapGesture {
+            store.send(.tapSearchBar)
+          }
         
         Button {
           store.send(.tapSearchButton)

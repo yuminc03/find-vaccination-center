@@ -30,6 +30,7 @@ struct MapCore {
   
   enum Action: BindableAction {
     case binding(BindingAction<State>)
+    case tapSearchBar
     case tapSearchButton
     case tapMarker(VaccinationCenterDetailEntity)
     case tapViewMoreButton(VaccinationCenterDetailEntity)
@@ -47,6 +48,8 @@ struct MapCore {
       switch action {
       case .binding: break
       case .tapViewMoreButton: break
+      case .tapSearchBar: break
+        
       case .tapSearchButton:
         return .send(._requestVaccination)
         

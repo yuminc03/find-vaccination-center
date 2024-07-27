@@ -68,6 +68,7 @@ struct SearchView: View {
         
         SearchList
       }
+      .navigationBarHidden(true)
     }
   }
 }
@@ -86,7 +87,6 @@ private extension SearchView {
       TextField("주소를 입력해주세요", text: $store.searchText)
         .padding(.horizontal, 20)
         .padding(.vertical, 15)
-        .background(.white)
         .keyboardType(.webSearch)
       
       if store.searchText.isEmpty == false {
