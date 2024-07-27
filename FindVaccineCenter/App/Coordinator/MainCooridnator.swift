@@ -17,14 +17,23 @@ struct MainCoordinator {
   var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
+        // MARK: - 지도 화면
       case let .router(.routeAction(id: _, action: .map(.tapViewMoreButton(location)))):
         state.routes.presentSheet(.detail(.init(entity: location)))
         
+      case .router(.routeAction(id: _, action: .map(.tapSearchBar))):
+        state.routes.push(.search(.init()))
+        
+        // MARK: - 예방접종 센터 상세 화면
       case .router(.routeAction(id: _, action: .detail(.tapCloseButton))):
         state.routes.dismiss()
         
-      case .router(.routeAction(id: _, action: .map(.tapSearchBar))):
-        state.routes.push(.search(.init()))
+        // MARK: - 검색 화면
+      case .router(.routeAction(id: _, action: .search(.tapBackButton))):
+        state.routes.goBack()
+        
+      case .router(.routeAction(id: _, action: .search(.tapSubmitButton))):
+        state.routes.goBack()
         
       default: break
       }

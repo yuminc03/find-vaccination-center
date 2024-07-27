@@ -31,6 +31,7 @@ struct SearchCore {
     case tapBackButton
     case tapRowDeleteButton
     case tapClearButton
+    case tapSubmitButton
   }
   
   var body: some ReducerOf<Self> {
@@ -43,6 +44,8 @@ struct SearchCore {
       case .tapRowDeleteButton: break
       case .tapClearButton:
         state.searchText = ""
+        
+      case .tapSubmitButton: break
       }
       
       return .none
@@ -55,7 +58,7 @@ struct SearchView: View {
   @Perception.Bindable private var store: StoreOf<SearchCore>
   
   init(store: StoreOf<SearchCore>) {
-    self.store = Store(initialState: .init()) { SearchCore() }
+    self.store = store
   }
   
   var body: some View {
@@ -88,6 +91,9 @@ private extension SearchView {
         .padding(.horizontal, 20)
         .padding(.vertical, 15)
         .keyboardType(.webSearch)
+        .onSubmit {
+          store.send(.tapSubmitButton)
+        }
       
       if store.searchText.isEmpty == false {
         Button {
