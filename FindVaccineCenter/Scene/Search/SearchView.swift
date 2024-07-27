@@ -2,11 +2,13 @@ import SwiftUI
 
 import ComposableArchitecture
 
-struct SearchCore: Reducer {
+@Reducer
+struct SearchCore {
+  @ObservableState
   struct State: Equatable {
     let id = UUID()
     
-    @BindingState var searchText = ""
+    var searchText = ""
     let searchList: [SearchListItemEntity] = [
       .init(
         centerName: "코로나19 중앙 예방접종센터",
@@ -23,13 +25,15 @@ struct SearchCore: Reducer {
     ]
   }
   
-  enum Action: BindableAction, Equatable {
+  enum Action: BindableAction {
     case binding(BindingAction<State>)
     case tapBackButton
     case tapRowDeleteButton
   }
   
   var body: some ReducerOf<Self> {
+    BindingReducer()
+    
     Reduce { state, action in
       switch action {
       case .binding: break
@@ -44,30 +48,24 @@ struct SearchCore: Reducer {
 
 /// 병원 검색 화면
 struct SearchView: View {
-  private let store: StoreOf<SearchCore>
-  @ObservedObject private var viewStore: ViewStoreOf<SearchCore>
+  @Perception.Bindable private var store: StoreOf<SearchCore>
   
   init(store: StoreOf<SearchCore>) {
     self.store = Store(initialState: .init()) { SearchCore() }
-    self.viewStore = ViewStore(self.store, observe: { $0 })
   }
   
   var body: some View {
-    VStack(spacing: 0) {
-      SearchBar
-        .padding(.horizontal, 20)
-      
-      Separator
-      
-      SearchList
+    WithPerceptionTracking {
+      VStack(spacing: 0) {
+        SearchBar
+          .padding(.horizontal, 20)
+        
+        Separator
+        
+        SearchList
+      }
     }
   }
-}
-
-#Preview {
-  SearchView(store: .init(initialState: SearchCore.State()) {
-    SearchCore()
-  })
 }
 
 private extension SearchView {
@@ -80,10 +78,12 @@ private extension SearchView {
           .size(20)
           .foregroundColor(.black)
       }
-      TextField("주소를 입력해주세요", text: viewStore.$searchText)
+      
+      TextField("주소를 입력해주세요", text: $store.searchText)
         .padding(.horizontal, 20)
         .padding(.vertical, 15)
         .background(.white)
+        .keyboardType(.webSearch)
     }
   }
   
@@ -98,14 +98,14 @@ private extension SearchView {
   
   var SearchList: some View {
     List {
-      ForEach(viewStore.searchList) { data in
+      ForEach(store.searchList) { data in
         listRow(data)
       }
     }
     .listStyle(.plain)
   }
   
-  func listRow(_ data: SearchListItemEntity) -> some View {
+  private func listRow(_ data: SearchListItemEntity) -> some View {
     HStack(spacing: 20) {
       Image(systemName: .systemImage(.magnifyingglass))
       HStack(spacing: 5) {
@@ -125,4 +125,10 @@ private extension SearchView {
       }
     }
   }
+}
+
+#Preview {
+  SearchView(store: .init(initialState: SearchCore.State()) {
+    SearchCore()
+  })
 }
