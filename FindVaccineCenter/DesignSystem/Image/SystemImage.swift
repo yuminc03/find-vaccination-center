@@ -5,6 +5,7 @@ enum SystemImage: String {
   case backArrow = "chevron.backward"
   case magnifyingglass
   case xmark
+  case xmarkCircleFill = "xmark.circle.fill"
   case locationFill = "location.fill"
   case docTextMagnifyingglass = "doc.text.magnifyingglass"
   case phoneFill = "phone.fill"

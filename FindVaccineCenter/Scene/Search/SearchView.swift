@@ -27,8 +27,10 @@ struct SearchCore {
   
   enum Action: BindableAction {
     case binding(BindingAction<State>)
+    
     case tapBackButton
     case tapRowDeleteButton
+    case tapClearButton
   }
   
   var body: some ReducerOf<Self> {
@@ -39,6 +41,8 @@ struct SearchCore {
       case .binding: break
       case .tapBackButton: break
       case .tapRowDeleteButton: break
+      case .tapClearButton:
+        state.searchText = ""
       }
       
       return .none
@@ -84,6 +88,16 @@ private extension SearchView {
         .padding(.vertical, 15)
         .background(.white)
         .keyboardType(.webSearch)
+      
+      if store.searchText.isEmpty == false {
+        Button {
+          store.send(.tapClearButton)
+        } label: {
+          Image(systemName: .systemImage(.xmarkCircleFill))
+            .size(20)
+            .foregroundColor(.black)
+        }
+      }
     }
   }
   
