@@ -1,10 +1,3 @@
-//
-//  VaccinationCenterRepository.swift
-//  FindVaccineCenter
-//
-//  Created by Yumin Chu on 6/19/24.
-//
-
 import Foundation
 
 final class VaccinationCenterRepository {

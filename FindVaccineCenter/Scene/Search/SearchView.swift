@@ -9,6 +9,8 @@ struct SearchCore {
     let id = UUID()
     
     var searchText = ""
+    var centerTotal = 0
+    var vaccinations: VaccinationCenterEntity?
     let searchList: [SearchListItemEntity] = [
       .init(
         centerName: "코로나19 중앙 예방접종센터",
@@ -25,6 +27,8 @@ struct SearchCore {
     ]
   }
   
+  private let repo = VaccinationCenterRepository()
+  
   enum Action: BindableAction {
     case binding(BindingAction<State>)
     
@@ -32,6 +36,12 @@ struct SearchCore {
     case tapRowDeleteButton
     case tapClearButton
     case tapSubmitButton
+    
+    case _onAppear
+    case _requestVaccinationTotal
+    case _vaccinationTotalResponse(Result<Int, VCError>)
+    case _requestVaccination
+    case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
   }
   
   var body: some ReducerOf<Self> {
@@ -46,6 +56,36 @@ struct SearchCore {
         state.searchText = ""
         
       case .tapSubmitButton: break
+      case ._onAppear:
+        return .run { send in
+          await send(._requestVaccinationTotal)
+          await send(._requestVaccination)
+        }
+        
+      case ._requestVaccinationTotal:
+        return .run { send in
+          let dto = try await repo.requestVaccinationCenter()
+          await send(._vaccinationTotalResponse(.success(dto.totalCount)))
+        } catch: { error, send in
+          await send(._vaccinationTotalResponse(.failure(error.toVCError)))
+        }
+        
+      case let ._vaccinationTotalResponse(.success(count)):
+        state.centerTotal = count
+        
+      case let ._vaccinationTotalResponse(.failure(error)): break
+      case ._requestVaccination:
+        return .run { [state] send in
+          let dto = try await repo.requestVaccinationCenter(dataCount: state.centerTotal)
+          await send(._vaccinationResponse(.success(dto)))
+        } catch: { error, send in
+          await send(._vaccinationResponse(.failure(error.toVCError)))
+        }
+        
+      case let ._vaccinationResponse(.success(dto)):
+        state.vaccinations = dto
+        
+      case let ._vaccinationResponse(.failure(error)): break
       }
       
       return .none
