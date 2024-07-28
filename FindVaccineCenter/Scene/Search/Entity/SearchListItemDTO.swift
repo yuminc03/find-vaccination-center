@@ -6,3 +6,9 @@ struct SearchListItemDTO: Codable {
   /// 검색한 날짜
   let dateString: String
 }
+
+extension SearchListItemDTO {
+  var toEntity: SearchListItemEntity {
+    return .init(centerName: centerName, dateString: dateString)
+  }
+}

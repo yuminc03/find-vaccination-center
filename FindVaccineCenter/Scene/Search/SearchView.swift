@@ -11,20 +11,7 @@ struct SearchCore {
     var searchText = ""
     var centerTotal = 0
     var vaccinations: VaccinationCenterEntity?
-    let searchList: [SearchListItemEntity] = [
-      .init(
-        centerName: "코로나19 중앙 예방접종센터",
-        dateString: "24.07.10"
-      ),
-      .init(
-        centerName: "코로나19 영남권역 예방접종센터",
-        dateString: "24.07.10"
-      ),
-      .init(
-        centerName: "코로나19 호남권역 예방접종센터",
-        dateString: "24.07.10"
-      ),
-    ]
+    var searchList = [SearchListItemEntity]()
     var recommendSearchList = [VaccinationCenterEntity.Vaccnination]()
   }
   
@@ -45,6 +32,7 @@ struct SearchCore {
     case _vaccinationTotalResponse(Result<Int, VCError>)
     case _requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
+    case _getSearchList
   }
   
   var body: some ReducerOf<Self> {
@@ -58,7 +46,23 @@ struct SearchCore {
       case .tapClearButton:
         state.searchText = ""
         
-      case .tapSubmitButton: break
+      case .tapSubmitButton:
+        guard var searchList = UDStorage.searchList else {
+          UDStorage.searchList = [.init(
+            centerName: state.searchText,
+            dateString: Date().toString(format: .dotDate)
+          )]
+          break
+        }
+        
+        guard searchList.map({ $0.centerName }).contains(state.searchText) == false 
+        else { break }
+        
+        searchList.append(.init(
+          centerName: state.searchText,
+          dateString: Date().toString(format: .dotDate)
+        ))
+        
       case let .changeSearchText(value):
         state.searchText = value
         guard let vaccinations = state.vaccinations?.data else { break }
@@ -77,6 +81,7 @@ struct SearchCore {
         return .run { send in
           await send(._requestVaccinationTotal)
           await send(._requestVaccination)
+          await send(._getSearchList)
         }
         
       case ._requestVaccinationTotal:
@@ -103,6 +108,9 @@ struct SearchCore {
         state.vaccinations = dto
         
       case let ._vaccinationResponse(.failure(error)): break
+      case ._getSearchList:
+        guard let list = UDStorage.searchList else { break }
+        state.searchList = list.map{ $0.toEntity }
       }
       
       return .none
@@ -179,8 +187,15 @@ private extension SearchView {
   var SearchList: some View {
     List {
       if store.searchText.isEmpty {
-        ForEach(store.searchList) {
-          listRow($0)
+        if store.searchList.isEmpty {
+          Text("검색기록이 없습니다")
+            .foregroundColor(.gray200)
+            .font(.system(size: 16))
+            .listRowSeparator(.hidden)
+        } else {
+          ForEach(store.searchList) {
+            listRow($0)
+          }
         }
       } else {
         if store.recommendSearchList.isEmpty {
@@ -223,15 +238,17 @@ private extension SearchView {
   }
   
   private func listRow(_ data: SearchListItemEntity) -> some View {
-    HStack(spacing: 20) {
+    HStack(spacing: 10) {
       Image(systemName: .systemImage(.magnifyingglass))
+        .size(15)
       HStack(spacing: 5) {
         Text(data.centerName)
-          .font(.body)
+          .font(.system(size: 14))
           .lineLimit(1)
         Spacer()
         Text(data.dateString)
-          .font(.caption)
+          .font(.system(size: 12))
+          .foregroundColor(.gray300)
       }
       
       Button {
