@@ -25,6 +25,7 @@ struct SearchCore {
         dateString: "24.07.10"
       ),
     ]
+    var recommendSearchList = [VaccinationCenterEntity.Vaccnination]()
   }
   
   private let repo = VaccinationCenterRepository()
@@ -36,6 +37,7 @@ struct SearchCore {
     case tapRowDeleteButton
     case tapClearButton
     case tapSubmitButton
+    case changeSearchText(String)
     
     case _onAppear
     case _requestVaccinationTotal
@@ -56,6 +58,12 @@ struct SearchCore {
         state.searchText = ""
         
       case .tapSubmitButton: break
+      case let .changeSearchText(value):
+        state.searchText = value
+        guard let vaccinations = state.vaccinations?.data else { break }
+        
+        state.recommendSearchList = vaccinations.filter { $0.centerName.contains(value) }
+        
       case ._onAppear:
         return .run { send in
           await send(._requestVaccinationTotal)
@@ -112,6 +120,9 @@ struct SearchView: View {
         SearchList
       }
       .navigationBarHidden(true)
+      .onAppear {
+        store.send(._onAppear)
+      }
     }
   }
 }
@@ -127,7 +138,7 @@ private extension SearchView {
           .foregroundColor(.black)
       }
       
-      TextField("주소를 입력해주세요", text: $store.searchText)
+      TextField("주소를 입력해주세요", text: $store.searchText.sending(\.changeSearchText))
         .padding(.horizontal, 20)
         .padding(.vertical, 15)
         .keyboardType(.webSearch)
@@ -158,11 +169,44 @@ private extension SearchView {
   
   var SearchList: some View {
     List {
-      ForEach(store.searchList) { data in
-        listRow(data)
+      if store.searchText.isEmpty {
+        ForEach(store.searchList) {
+          listRow($0)
+        }
+      } else {
+        if store.recommendSearchList.isEmpty {
+          Text("추천 검색어가 없습니다")
+            .foregroundColor(.gray200)
+            .font(.system(size: 16))
+            .listRowSeparator(.hidden)
+        } else {
+          ForEach(store.recommendSearchList, id: \.id) {
+            recommendListRow($0)
+          }
+        }
       }
     }
     .listStyle(.plain)
+  }
+  
+  private func recommendListRow(_ data: VaccinationCenterEntity.Vaccnination) -> some View {
+    HStack(alignment: .top, spacing: 10) {
+      Image(systemName: .systemImage(.locationFill))
+        .size(15)
+      VStack(spacing: 5) {
+        Text(data.centerName)
+          .font(.system(size: 16, weight: .bold))
+          .frame(maxWidth: .infinity, alignment: .leading)
+        Text(data.facilityName)
+          .font(.system(size: 12))
+          .foregroundColor(.gray200)
+          .frame(maxWidth: .infinity, alignment: .leading)
+        Text(data.address)
+          .font(.system(size: 14))
+          .frame(maxWidth: .infinity, alignment: .leading)
+      }
+      .frame(maxWidth: .infinity, alignment: .leading)
+    }
   }
   
   private func listRow(_ data: SearchListItemEntity) -> some View {
