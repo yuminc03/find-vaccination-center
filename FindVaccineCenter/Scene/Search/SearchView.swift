@@ -38,6 +38,7 @@ struct SearchCore {
     case tapClearButton
     case tapSubmitButton
     case changeSearchText(String)
+    case tapRecommendRow(Int)
     
     case _onAppear
     case _requestVaccinationTotal
@@ -63,6 +64,14 @@ struct SearchCore {
         guard let vaccinations = state.vaccinations?.data else { break }
         
         state.recommendSearchList = vaccinations.filter { $0.centerName.contains(value) }
+        
+      case let .tapRecommendRow(id):
+        guard let item = state.recommendSearchList.filter({ $0.id == id }).first else {
+          print("id: \(id)에 해당하는 센터를 찾지 못함")
+          break
+        }
+        
+        state.searchText = item.centerName
         
       case ._onAppear:
         return .run { send in
@@ -206,6 +215,10 @@ private extension SearchView {
           .frame(maxWidth: .infinity, alignment: .leading)
       }
       .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    .contentShape(Rectangle())
+    .onTapGesture {
+      store.send(.tapRecommendRow(data.id))
     }
   }
   
