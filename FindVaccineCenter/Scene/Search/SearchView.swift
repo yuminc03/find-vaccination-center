@@ -21,7 +21,7 @@ struct SearchCore {
     case binding(BindingAction<State>)
     
     case tapBackButton
-    case tapRowDeleteButton
+    case tapRowDeleteButton(SearchListItemEntity)
     case tapClearButton
     case tapSubmitButton
     case changeSearchText(String)
@@ -42,7 +42,17 @@ struct SearchCore {
       switch action {
       case .binding: break
       case .tapBackButton: break
-      case .tapRowDeleteButton: break
+      case let .tapRowDeleteButton(entity):
+        guard var searchList = UDStorage.searchList else { break }
+        for i in searchList.indices {
+          if searchList[i].toEntity == entity {
+            searchList.remove(at: i)
+          }
+        }
+        
+        UDStorage.searchList = searchList
+        return .send(._getSearchList)
+        
       case .tapClearButton:
         state.searchText = ""
         
@@ -62,6 +72,9 @@ struct SearchCore {
           centerName: state.searchText,
           dateString: Date().toString(format: .dotDate)
         ))
+        
+        UDStorage.searchList = searchList
+        return .send(._getSearchList)
         
       case let .changeSearchText(value):
         state.searchText = value
@@ -252,12 +265,14 @@ private extension SearchView {
       }
       
       Button {
-        store.send(.tapRowDeleteButton)
+        store.send(.tapRowDeleteButton(data))
       } label: {
         Image(systemName: .systemImage(.xmark))
-          .size(12)
+          .size(15)
       }
+      .buttonStyle(.plain)
     }
+    .contentShape(Rectangle())
   }
 }
 
