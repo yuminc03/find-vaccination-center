@@ -15,6 +15,8 @@
 		05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2844C2C29546400655C84 /* LocationAuthorityService.swift */; };
 		05CFD8802C53566F00A53449 /* MKCoordinateRegion+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */; };
 		05CFD8862C53753F00A53449 /* Task+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFD8852C53753F00A53449 /* Task+.swift */; };
+		05E606322C576BF100A19AD5 /* SearchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606312C576BF100A19AD5 /* SearchCore.swift */; };
+		05E606352C57701700A19AD5 /* IdentifiedArray+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606342C57701700A19AD5 /* IdentifiedArray+.swift */; };
 		8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D54F2C2059A800681BD4 /* Dictionary+.swift */; };
 		8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF93E2C230F18005CC85E /* NetworkManager.swift */; };
 		8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */; };
@@ -81,6 +83,8 @@
 		05C2844C2C29546400655C84 /* LocationAuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorityService.swift; sourceTree = "<group>"; };
 		05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
 		05CFD8852C53753F00A53449 /* Task+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+.swift"; sourceTree = "<group>"; };
+		05E606312C576BF100A19AD5 /* SearchCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCore.swift; sourceTree = "<group>"; };
+		05E606342C57701700A19AD5 /* IdentifiedArray+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IdentifiedArray+.swift"; sourceTree = "<group>"; };
 		8D12D54F2C2059A800681BD4 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		8D3FF93E2C230F18005CC85E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		05AAE12D2C36956D001846D4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */,
 				8DCE46CE2C3C1E3B007AC2F4 /* CenterPreviewEntity.swift */,
 				05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */,
 			);
@@ -199,7 +204,6 @@
 			children = (
 				8D855A4B2C397D42003CFF0B /* Search */,
 				8D855A6A2C3A7523003CFF0B /* Detail */,
-				8D3FF9432C231726005CC85E /* Entity */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -223,6 +227,7 @@
 				8DD3566D2C42A8E50072DAA0 /* UINavigationController+.swift */,
 				05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */,
 				05CFD8852C53753F00A53449 /* Task+.swift */,
+				05E606342C57701700A19AD5 /* IdentifiedArray+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -233,14 +238,6 @@
 				8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */,
 			);
 			path = Repository;
-			sourceTree = "<group>";
-		};
-		8D3FF9432C231726005CC85E /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				8D3FF9442C231735005CC85E /* VaccinationCenterEntity.swift */,
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		8D5122202C4FE542009402D2 /* Coordinator */ = {
@@ -264,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				8D9024522C56258900D5B89D /* Entity */,
+				05E606312C576BF100A19AD5 /* SearchCore.swift */,
 				8D855A4C2C397F9E003CFF0B /* SearchView.swift */,
 			);
 			path = Search;
@@ -605,6 +603,7 @@
 				8D56E4222C40148E00A915A4 /* MapAnnotationView.swift in Sources */,
 				8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */,
 				8D855A672C3A6B24003CFF0B /* SystemImage.swift in Sources */,
+				05E606352C57701700A19AD5 /* IdentifiedArray+.swift in Sources */,
 				05AAE12F2C369592001846D4 /* SearchListItemEntity.swift in Sources */,
 				05CFD8862C53753F00A53449 /* Task+.swift in Sources */,
 				8DD356682C4270290072DAA0 /* View+.swift in Sources */,
@@ -636,6 +635,7 @@
 				8DD3566E2C42A8E50072DAA0 /* UINavigationController+.swift in Sources */,
 				8D855A6E2C3A75E0003CFF0B /* DetailView.swift in Sources */,
 				8DFCCA2C2C28485F000937E2 /* String+.swift in Sources */,
+				05E606322C576BF100A19AD5 /* SearchCore.swift in Sources */,
 				8D8F3F3D2C1F2A070059C3C0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -804,7 +804,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -838,7 +838,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
