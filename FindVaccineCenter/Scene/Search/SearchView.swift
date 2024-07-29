@@ -43,14 +43,14 @@ struct SearchCore {
       case .binding: break
       case .tapBackButton: break
       case let .tapRowDeleteButton(entity):
-        guard var searchList = UDStorage.searchList else { break }
-        for i in searchList.indices {
-          if searchList[i].toEntity == entity {
-            searchList.remove(at: i)
+        for i in 0 ..< state.searchList.count {
+          if state.searchList[i].centerName == entity.centerName {
+            state.searchList.remove(at: i)
+            break
           }
         }
         
-        UDStorage.searchList = searchList
+        UDStorage.searchList = state.searchList.map { $0.toDTO }
         return .send(._getSearchList)
         
       case .tapClearButton:
@@ -122,7 +122,11 @@ struct SearchCore {
         
       case let ._vaccinationResponse(.failure(error)): break
       case ._getSearchList:
-        guard let list = UDStorage.searchList else { break }
+        guard let list = UDStorage.searchList else {
+          state.searchList = []
+          break
+        }
+        
         state.searchList = list.map{ $0.toEntity }
       }
       
@@ -254,6 +258,7 @@ private extension SearchView {
     HStack(spacing: 10) {
       Image(systemName: .systemImage(.magnifyingglass))
         .size(15)
+      
       HStack(spacing: 5) {
         Text(data.centerName)
           .font(.system(size: 14))
@@ -270,9 +275,7 @@ private extension SearchView {
         Image(systemName: .systemImage(.xmark))
           .size(15)
       }
-      .buttonStyle(.plain)
     }
-    .contentShape(Rectangle())
   }
 }
 

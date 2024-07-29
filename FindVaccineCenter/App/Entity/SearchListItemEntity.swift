@@ -8,3 +8,9 @@ struct SearchListItemEntity: Equatable, Identifiable {
   /// 검색한 날짜
   let dateString: String
 }
+
+extension SearchListItemEntity {
+  var toDTO: SearchListItemDTO {
+    return .init(centerName: centerName, dateString: dateString)
+  }
+}
