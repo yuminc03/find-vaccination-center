@@ -48,6 +48,9 @@ struct MapView: View {
           span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )))
       }
+      .onReceive(store.publisher.searchText) {
+        store.send(._findCenter($0))
+      }
       .environmentObject(locationService)
     }
   }
@@ -87,7 +90,7 @@ private extension MapView {
       .padding(.horizontal, 20)
       .padding(.vertical, 15)
       .background(.white)
-      .clipShape(RoundedRectangle(cornerRadius: 10))
+      .cornerRadius(10)
       .shadow(radius: 10)
       .padding(.horizontal, 16)
       .contentShape(RoundedRectangle(cornerRadius: 10))

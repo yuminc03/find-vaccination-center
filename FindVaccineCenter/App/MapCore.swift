@@ -39,6 +39,7 @@ struct MapCore {
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
     case _updateMapRegion(VaccinationCenterDetailEntity)
     case _setMapRegion(MKCoordinateRegion)
+    case _findCenter(String)
   }
   
   var body: some ReducerOf<Self> {
@@ -119,6 +120,10 @@ struct MapCore {
         
       case let ._setMapRegion(value):
         state.mapRegion = value
+        
+      case let ._findCenter(name):
+        guard let index = state.entity.firstIndex(where: { $0.name == name }) else { break }
+        return .send(._updateMapRegion(state.entity[index]))
       }
       
       return .none
