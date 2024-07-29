@@ -57,23 +57,23 @@ struct SearchCore {
         state.searchText = ""
         
       case .tapSubmitButton:
-        guard var searchList = UDStorage.searchList else {
+        if state.searchList.isEmpty {
           UDStorage.searchList = [.init(
             centerName: state.searchText,
             dateString: Date().toString(format: .dotDate)
           )]
-          break
+        } else {
+          guard state.searchList.map({ $0.centerName }).contains(state.searchText) == false
+          else { break }
+          
+          state.searchList.append(.init(
+            centerName: state.searchText,
+            dateString: Date().toString(format: .dotDate)
+          ))
+          
+          UDStorage.searchList = state.searchList.map { $0.toDTO }
         }
         
-        guard searchList.map({ $0.centerName }).contains(state.searchText) == false 
-        else { break }
-        
-        searchList.append(.init(
-          centerName: state.searchText,
-          dateString: Date().toString(format: .dotDate)
-        ))
-        
-        UDStorage.searchList = searchList
         return .send(._getSearchList)
         
       case let .changeSearchText(value):
