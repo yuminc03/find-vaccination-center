@@ -73,32 +73,27 @@ private extension MapView {
   var SearchView: some View {
     VStack(spacing: 0) {
       HStack(spacing: 10) {
-        Text("주소를 입력해주세요")
-          .padding(.horizontal, 20)
-          .padding(.vertical, 15)
-          .foregroundColor(.gray200)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .background(.white)
-          .clipShape(RoundedRectangle(cornerRadius: 10))
-          .shadow(radius: 10)
-          .onTapGesture {
-            store.send(.tapSearchBar)
-          }
+        Image(systemName: .systemImage(.magnifyingglass))
+          .size(20)
         
-        Button {
-          store.send(.tapSearchButton)
-        } label: {
-          Image(systemName: .systemImage(.magnifyingglass))
-            .resizable()
-            .frame(width: 20, height: 20)
-            .foregroundColor(.white)
-            .padding(15)
-            .background(Color.blue)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .shadow(radius: 10)
-        }
+        Text(store.searchText.isEmpty ? "주소를 입력해주세요" : store.searchText)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .if(store.searchText.isEmpty) {
+            $0.foregroundColor(.gray200)
+          } falseTransform: {
+            $0.foregroundColor(.gray500)
+          }
       }
+      .padding(.horizontal, 20)
+      .padding(.vertical, 15)
+      .background(.white)
+      .clipShape(RoundedRectangle(cornerRadius: 10))
+      .shadow(radius: 10)
       .padding(.horizontal, 16)
+      .contentShape(RoundedRectangle(cornerRadius: 10))
+      .onTapGesture {
+        store.send(.tapSearchBar)
+      }
       
       Spacer()
     }
