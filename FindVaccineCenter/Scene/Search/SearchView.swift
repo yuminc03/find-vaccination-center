@@ -123,17 +123,23 @@ private extension SearchView {
   
   private func listRow(_ data: SearchListItemEntity) -> some View {
     HStack(spacing: 10) {
-      Image(systemName: .systemImage(.magnifyingglass))
-        .size(15)
-      
-      HStack(spacing: 5) {
-        Text(data.centerName)
-          .font(.system(size: 14))
-          .lineLimit(1)
-        Spacer()
-        Text(data.dateString)
-          .font(.system(size: 12))
-          .foregroundColor(.gray300)
+      HStack(spacing: 10) {
+        Image(systemName: .systemImage(.magnifyingglass))
+          .size(15)
+        
+        HStack(spacing: 5) {
+          Text(data.centerName)
+            .font(.system(size: 14))
+            .lineLimit(1)
+          Spacer()
+          Text(data.dateString)
+            .font(.system(size: 12))
+            .foregroundColor(.gray300)
+        }
+      }
+      .contentShape(Rectangle())
+      .onTapGesture {
+        store.send(.tapSearchRow(data))
       }
       
       Button {

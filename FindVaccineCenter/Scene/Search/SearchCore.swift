@@ -27,6 +27,7 @@ struct SearchCore {
     case tapSubmitButton
     case changeSearchText(String)
     case tapRecommendRow(Int)
+    case tapSearchRow(SearchListItemEntity)
     
     case _onAppear
     case _requestVaccinationTotal
@@ -100,6 +101,10 @@ struct SearchCore {
         }
         
         state.searchText = item.centerName
+        
+      case let .tapSearchRow(entity):
+        state.searchText = entity.centerName
+        return .send(.changeSearchText(entity.centerName))
         
       case ._onAppear:
         return .run { send in
