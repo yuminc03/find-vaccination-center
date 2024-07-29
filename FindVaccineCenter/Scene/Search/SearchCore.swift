@@ -70,7 +70,9 @@ struct SearchCore {
           )]
         } else {
           guard state.searchList.map({ $0.centerName }).contains(state.searchText) == false
-          else { break }
+          else {
+            return .send(.delegate(.search(state.searchText)))
+          }
           
           state.searchList.append(.init(
             centerName: state.searchText,
@@ -115,7 +117,7 @@ struct SearchCore {
         }
         
       case let ._vaccinationTotalResponse(.success(count)):
-        state.centerTotal = count
+        state.centerTotal = count > 50 ? 50 : count
         
       case let ._vaccinationTotalResponse(.failure(error)): break
       case ._requestVaccination:

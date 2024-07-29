@@ -14,6 +14,8 @@ struct MapCore {
     var error: VCError?
     var mapLocation: VaccinationCenterDetailEntity?
     var viewDidLoad = false
+    var isCurrentPage = false
+    var centerTotal = 0
     
     var locationError: VCError.LocationError?
     var searchText = ""
@@ -35,11 +37,15 @@ struct MapCore {
     case tapViewMoreButton(VaccinationCenterDetailEntity)
     case tapNextButton
     
+    case _onAppear
+    case _requestVaccinationTotal
+    case _vaccinationTotalResponse(Result<Int, VCError>)
     case _requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
     case _updateMapRegion(VaccinationCenterDetailEntity)
     case _setMapRegion(MKCoordinateRegion)
     case _findCenter(String)
+    case _setIsCurrentPage(Bool)
   }
   
   var body: some ReducerOf<Self> {
@@ -70,10 +76,28 @@ struct MapCore {
         
         return .send(._updateMapRegion(state.entity[nextIndex]))
         
+      case ._onAppear:
+        return .run { send in
+          await send(._requestVaccinationTotal)
+          await send(._requestVaccination)
+        }
+        
+      case ._requestVaccinationTotal:
+        return .run { send in
+          let dto = try await repo.requestVaccinationCenter()
+          await send(._vaccinationTotalResponse(.success(dto.totalCount)))
+        } catch: { error, send in
+          await send(._vaccinationTotalResponse(.failure(error.toVCError)))
+        }
+        
+      case let ._vaccinationTotalResponse(.success(count)):
+        state.centerTotal = count > 50 ? 50 : count
+        
+      case let ._vaccinationTotalResponse(.failure(error)): break
       case ._requestVaccination:
         state.error = nil
-        return .run { send in
-          let dto = try await repo.requestVaccinationCenter(dataCount: 30)
+        return .run { [state] send in
+          let dto = try await repo.requestVaccinationCenter(dataCount: state.centerTotal)
           await send(._vaccinationResponse(.success(dto)))
         } catch: { error, send in
           await send(._vaccinationResponse(.failure(error.toVCError)))
@@ -124,6 +148,9 @@ struct MapCore {
       case let ._findCenter(name):
         guard let index = state.entity.firstIndex(where: { $0.name == name }) else { break }
         return .send(._updateMapRegion(state.entity[index]))
+        
+      case let ._setIsCurrentPage(isCurrentPage):
+        state.isCurrentPage = isCurrentPage
       }
       
       return .none
