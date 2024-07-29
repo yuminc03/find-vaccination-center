@@ -81,7 +81,7 @@ private extension MapView {
           .if(store.searchText.isEmpty) {
             $0.foregroundColor(.gray200)
           } falseTransform: {
-            $0.foregroundColor(.gray500)
+            $0.foregroundColor(.black)
           }
       }
       .padding(.horizontal, 20)

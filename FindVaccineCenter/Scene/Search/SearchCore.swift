@@ -19,6 +19,7 @@ struct SearchCore {
   
   enum Action: BindableAction {
     case binding(BindingAction<State>)
+    case delegate(Delegate)
     
     case tapBackButton
     case tapRowDeleteButton(SearchListItemEntity)
@@ -33,6 +34,10 @@ struct SearchCore {
     case _requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
     case _getSearchList
+    
+    enum Delegate {
+      case search(String)
+    }
   }
   
   var body: some ReducerOf<Self> {
@@ -41,6 +46,7 @@ struct SearchCore {
     Reduce { state, action in
       switch action {
       case .binding: break
+      case .delegate: break
       case .tapBackButton: break
       case let .tapRowDeleteButton(entity):
         for i in 0 ..< state.searchList.count {
@@ -74,7 +80,10 @@ struct SearchCore {
           UDStorage.searchList = state.searchList.map { $0.toDTO }
         }
         
-        return .send(._getSearchList)
+        return .run { [state] send in
+          await send(._getSearchList)
+          await send(.delegate(.search(state.searchText)))
+        }
         
       case let .changeSearchText(value):
         state.searchText = value

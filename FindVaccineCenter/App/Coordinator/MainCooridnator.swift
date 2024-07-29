@@ -32,7 +32,10 @@ struct MainCoordinator {
       case .router(.routeAction(id: _, action: .search(.tapBackButton))):
         state.routes.goBack()
         
-      case .router(.routeAction(id: _, action: .search(.tapSubmitButton))):
+      case let .router(.routeAction(id: _, action: .search(.delegate(.search(text))))):
+        state.routes.findAndMutate(/MainScreen.State.map) { subState in
+          subState.searchText = text
+        }
         state.routes.goBack()
         
       default: break
