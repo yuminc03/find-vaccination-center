@@ -34,6 +34,12 @@ struct MapView: View {
           CenterPreview
         }
       }
+      .toast(
+        isPresented: $store.isErrorToastPresented,
+        message: store.error?.errorDescription ?? "",
+        duration: 5,
+        alignment: .bottom
+      )
       .onAppear {
         guard store.viewDidLoad == false else { return }
         
@@ -49,6 +55,17 @@ struct MapView: View {
           center: .init(latitude: latitude, longitude: longitude),
           span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )))
+      }
+      .onReceive(locationService.$authorizationStatus) {
+        switch $0 {
+        case .denied:
+          store.send(._setError(.location(.denied)))
+          
+        case .restricted:
+          store.send(._setError(.location(.restricted)))
+          
+        default: break
+        }
       }
       .environmentObject(locationService)
     }
