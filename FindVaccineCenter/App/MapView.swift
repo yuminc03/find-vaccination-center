@@ -35,14 +35,10 @@ struct MapView: View {
         }
       }
       .onAppear {
-        store.send(._setIsCurrentPage(true))
         guard store.viewDidLoad == false else { return }
         
         locationService.initialize()
         store.send(._onAppear)
-      }
-      .onDisappear {
-        store.send(._setIsCurrentPage(false))
       }
       .onReceive(locationService.$currentLocation) {
         guard let latitude = $0?.coordinate.latitude,
@@ -53,11 +49,6 @@ struct MapView: View {
           center: .init(latitude: latitude, longitude: longitude),
           span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )))
-      }
-      .onReceive(store.publisher.searchText) {
-        guard store.isCurrentPage else { return }
-        
-        store.send(._findCenter($0))
       }
       .environmentObject(locationService)
     }

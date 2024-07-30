@@ -14,7 +14,6 @@ struct MapCore {
     var error: VCError?
     var mapLocation: VaccinationCenterDetailEntity?
     var viewDidLoad = false
-    var isCurrentPage = false
     var centerTotal = 0
     
     var locationError: VCError.LocationError?
@@ -44,8 +43,6 @@ struct MapCore {
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
     case _updateMapRegion(VaccinationCenterDetailEntity)
     case _setMapRegion(MKCoordinateRegion)
-    case _findCenter(String)
-    case _setIsCurrentPage(Bool)
   }
   
   var body: some ReducerOf<Self> {
@@ -144,13 +141,6 @@ struct MapCore {
         
       case let ._setMapRegion(value):
         state.mapRegion = value
-        
-      case let ._findCenter(name):
-        guard let index = state.entity.firstIndex(where: { $0.name == name }) else { break }
-        return .send(._updateMapRegion(state.entity[index]))
-        
-      case let ._setIsCurrentPage(isCurrentPage):
-        state.isCurrentPage = isCurrentPage
       }
       
       return .none

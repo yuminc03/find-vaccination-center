@@ -32,9 +32,28 @@ struct MainCoordinator {
       case .router(.routeAction(id: _, action: .search(.tapBackButton))):
         state.routes.goBack()
         
-      case let .router(.routeAction(id: _, action: .search(.delegate(.search(text))))):
+      case let .router(.routeAction(id: _, action: .search(.delegate(.search(entity))))):
         state.routes.findAndMutate(/MainScreen.State.map) { subState in
-          subState.searchText = text
+          subState.searchText = entity.name
+          if entity.address.isEmpty {
+            guard let index = subState.entity.firstIndex(where: { $0.name == entity.name }) else {
+              print("\(entity.name)을 찾을 수 없음")
+              return
+            }
+            
+            let location = subState.entity[index]
+            subState.mapLocation = location
+            subState.mapRegion = .init(
+              center: location.coordinate,
+              span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            )
+          } else {
+            subState.mapLocation = entity
+            subState.mapRegion = .init(
+              center: entity.coordinate,
+              span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            )
+          }
         }
         state.routes.goBack()
         

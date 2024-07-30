@@ -35,9 +35,10 @@ struct SearchCore {
     case _requestVaccination
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
     case _getSearchList
+    case _saveSearchText(VaccinationCenterDetailEntity?)
     
     enum Delegate {
-      case search(String)
+      case search(VaccinationCenterDetailEntity)
     }
   }
   
@@ -64,29 +65,7 @@ struct SearchCore {
         state.searchText = ""
         
       case .tapSubmitButton:
-        if state.searchList.isEmpty {
-          UDStorage.searchList = [.init(
-            centerName: state.searchText,
-            dateString: Date().toString(format: .dotDate)
-          )]
-        } else {
-          guard state.searchList.map({ $0.centerName }).contains(state.searchText) == false
-          else {
-            return .send(.delegate(.search(state.searchText)))
-          }
-          
-          state.searchList.append(.init(
-            centerName: state.searchText,
-            dateString: Date().toString(format: .dotDate)
-          ))
-          
-          UDStorage.searchList = state.searchList.map { $0.toDTO }
-        }
-        
-        return .run { [state] send in
-          await send(._getSearchList)
-          await send(.delegate(.search(state.searchText)))
-        }
+        return .send(._saveSearchText(nil))
         
       case let .changeSearchText(value):
         state.searchText = value
@@ -101,6 +80,7 @@ struct SearchCore {
         }
         
         state.searchText = item.centerName
+        return .send(._saveSearchText(item.toEntity))
         
       case let .tapSearchRow(entity):
         state.searchText = entity.centerName
@@ -144,6 +124,51 @@ struct SearchCore {
         }
         
         state.searchList = list.map{ $0.toEntity }
+        
+      case let ._saveSearchText(entity):
+        if state.searchList.isEmpty {
+          UDStorage.searchList = [.init(
+            centerName: state.searchText,
+            dateString: Date().toString(format: .dotDate)
+          )]
+        } else {
+          guard state.searchList.map({ $0.centerName }).contains(state.searchText) == false
+          else {
+            return .send(.delegate(.search(
+              entity ?? VaccinationCenterDetailEntity(
+                name: state.searchText,
+                coordinate: .init(latitude: 0, longitude: 0),
+                address: "",
+                facilityName: "",
+                org: "",
+                phoneNumber: "", 
+                zipCode: ""
+              )
+            )))
+          }
+          
+          state.searchList.append(.init(
+            centerName: state.searchText,
+            dateString: Date().toString(format: .dotDate)
+          ))
+          
+          UDStorage.searchList = state.searchList.map { $0.toDTO }
+        }
+        
+        return .run { [state] send in
+          await send(._getSearchList)
+          await send(.delegate(.search(
+            entity ?? VaccinationCenterDetailEntity(
+              name: state.searchText,
+              coordinate: .init(latitude: 0, longitude: 0),
+              address: "",
+              facilityName: "",
+              org: "",
+              phoneNumber: "",
+              zipCode: ""
+            )
+          )))
+        }
       }
       
       return .none
