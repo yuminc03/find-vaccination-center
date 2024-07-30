@@ -821,6 +821,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindVaccineCenter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "접종센터 찾기";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "앱이 백그라운드에서 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 실행중일 때 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -856,6 +857,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindVaccineCenter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "접종센터 찾기";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "앱이 백그라운드에서 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱이 실행중일 때 사용자 위치를 얻어 현재 위치를 표시하기 위해서 권한을 요청합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
