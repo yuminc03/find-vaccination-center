@@ -63,14 +63,21 @@ private extension DetailView {
         image: .systemImage(.locationFill)
       )
       
-      centerLabel(
-        store.entity.org,
-        image: .systemImage(.docTextMagnifyingglass)
-      )
+      if store.entity.org.isEmpty == false {
+        centerLabel(
+          store.entity.org,
+          image: .systemImage(.docTextMagnifyingglass)
+        )
+      }
       
       Divider()
       
-      if store.entity.phoneNumber.isEmpty == false {
+      if store.entity.phoneNumber.isEmpty {
+        centerLabel(
+          "전화번호 없음",
+          image: .systemImage(.phoneFill)
+        )
+      } else {
         HStack(alignment: .top, spacing: 20) {
           centerLabel(
             store.entity.phoneNumber,
