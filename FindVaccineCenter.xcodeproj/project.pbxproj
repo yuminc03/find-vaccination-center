@@ -271,9 +271,9 @@
 		8D855A4B2C397D42003CFF0B /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				8D9024522C56258900D5B89D /* Entity */,
 				05E606312C576BF100A19AD5 /* SearchCore.swift */,
 				8D855A4C2C397F9E003CFF0B /* SearchView.swift */,
+				8D9024522C56258900D5B89D /* Entity */,
 			);
 			path = Search;
 			sourceTree = "<group>";
