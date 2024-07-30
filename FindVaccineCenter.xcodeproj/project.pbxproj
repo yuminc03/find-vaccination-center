@@ -10,6 +10,7 @@
 		053239982C5399B900A4631D /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053239972C5399B900A4631D /* DetailCore.swift */; };
 		0532399C2C539ADB00A4631D /* MapCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532399B2C539ADB00A4631D /* MapCore.swift */; };
 		05AAE12F2C369592001846D4 /* SearchListItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */; };
+		05BFB8562C587F1100F07F46 /* VCToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BFB8552C587F1100F07F46 /* VCToast.swift */; };
 		05BFDF1B2C4FA22800BEF0E7 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFDF1A2C4FA22800BEF0E7 /* TCACoordinators */; };
 		05BFDF212C4FA36F00BEF0E7 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 05BFDF202C4FA36F00BEF0E7 /* FlowStacks */; };
 		05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2844C2C29546400655C84 /* LocationAuthorityService.swift */; };
@@ -80,6 +81,7 @@
 		053239972C5399B900A4631D /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
 		0532399B2C539ADB00A4631D /* MapCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCore.swift; sourceTree = "<group>"; };
 		05AAE12E2C369592001846D4 /* SearchListItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListItemEntity.swift; sourceTree = "<group>"; };
+		05BFB8552C587F1100F07F46 /* VCToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCToast.swift; sourceTree = "<group>"; };
 		05C2844C2C29546400655C84 /* LocationAuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorityService.swift; sourceTree = "<group>"; };
 		05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
 		05CFD8852C53753F00A53449 /* Task+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+.swift"; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		05BFB8532C587EE900F07F46 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				05BFB8552C587F1100F07F46 /* VCToast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		05C2844B2C29545400655C84 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +221,7 @@
 		8D03CA652C0F4FD4004DEA36 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				05BFB8532C587EE900F07F46 /* Toast */,
 				8D855A702C3A907B003CFF0B /* NavigationBar */,
 				8D855A632C3A6B0D003CFF0B /* Image */,
 				8D855A4E2C3983B7003CFF0B /* ViewModifier */,
@@ -607,6 +618,7 @@
 				05AAE12F2C369592001846D4 /* SearchListItemEntity.swift in Sources */,
 				05CFD8862C53753F00A53449 /* Task+.swift in Sources */,
 				8DD356682C4270290072DAA0 /* View+.swift in Sources */,
+				05BFB8562C587F1100F07F46 /* VCToast.swift in Sources */,
 				8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */,
 				8DFEC8942C149BAB0021A098 /* VCError.swift in Sources */,
 				8D8F3F2E2C1F1A730059C3C0 /* VaccinationCenterResponseDTO.swift in Sources */,
