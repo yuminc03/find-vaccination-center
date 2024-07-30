@@ -20,6 +20,12 @@ struct SearchView: View {
         
         SearchList
       }
+      .toast(
+        isPresented: $store.isErrorToastPresented,
+        message: store.error?.errorDescription ?? "",
+        duration: 5,
+        alignment: .bottom
+      )
       .navigationBarHidden(true)
       .onAppear {
         store.send(._onAppear)

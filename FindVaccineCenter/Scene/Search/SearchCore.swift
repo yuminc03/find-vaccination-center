@@ -9,10 +9,13 @@ struct SearchCore {
     let id = UUID()
     
     var searchText = ""
+    var isErrorToastPresented = false
+    
     var centerTotal = 0
     var vaccinations: VaccinationCenterEntity?
     var searchList = [SearchListItemEntity]()
     var recommendSearchList = [VaccinationCenterEntity.Vaccnination]()
+    var error: VCError?
   }
   
   private let repo = VaccinationCenterRepository()
@@ -36,6 +39,7 @@ struct SearchCore {
     case _vaccinationResponse(Result<VaccinationCenterEntity, VCError>)
     case _getSearchList
     case _saveSearchText(VaccinationCenterDetailEntity?)
+    case _saveError(VCError)
     
     enum Delegate {
       case search(VaccinationCenterDetailEntity)
@@ -76,7 +80,7 @@ struct SearchCore {
       case let .tapRecommendRow(id):
         guard let item = state.recommendSearchList.filter({ $0.id == id }).first else {
           print("id: \(id)에 해당하는 센터를 찾지 못함")
-          break
+          return .send(._saveError(.map(.unknown("\(id)에 해당하는 센터를 찾지 못함"))))
         }
         
         state.searchText = item.centerName
@@ -94,6 +98,7 @@ struct SearchCore {
         }
         
       case ._requestVaccinationTotal:
+        state.error = nil
         return .run { send in
           let dto = try await repo.requestVaccinationCenter()
           await send(._vaccinationTotalResponse(.success(dto.totalCount)))
@@ -104,8 +109,11 @@ struct SearchCore {
       case let ._vaccinationTotalResponse(.success(count)):
         state.centerTotal = count > 50 ? 50 : count
         
-      case let ._vaccinationTotalResponse(.failure(error)): break
+      case let ._vaccinationTotalResponse(.failure(error)):
+        return .send(._saveError(error))
+        
       case ._requestVaccination:
+        state.error = nil
         return .run { [state] send in
           let dto = try await repo.requestVaccinationCenter(dataCount: state.centerTotal)
           await send(._vaccinationResponse(.success(dto)))
@@ -116,7 +124,9 @@ struct SearchCore {
       case let ._vaccinationResponse(.success(dto)):
         state.vaccinations = dto
         
-      case let ._vaccinationResponse(.failure(error)): break
+      case let ._vaccinationResponse(.failure(error)):
+        return .send(._saveError(error))
+        
       case ._getSearchList:
         guard let list = UDStorage.searchList else {
           state.searchList = []
@@ -169,6 +179,10 @@ struct SearchCore {
             )
           )))
         }
+        
+      case let ._saveError(error):
+        state.error = error
+        state.isErrorToastPresented = true
       }
       
       return .none
