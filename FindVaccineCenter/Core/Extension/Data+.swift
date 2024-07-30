@@ -1,10 +1,3 @@
-//
-//  Data+.swift
-//  FindVaccineCenter
-//
-//  Created by Yumin Chu on 6/23/24.
-//
-
 import Foundation
 
 extension Data {

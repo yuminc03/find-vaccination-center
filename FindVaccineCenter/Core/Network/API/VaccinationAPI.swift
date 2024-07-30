@@ -1,10 +1,3 @@
-//
-//  VaccinationAPI.swift
-//  FindVaccineCenter
-//
-//  Created by Yumin Chu on 6/16/24.
-//
-
 import Foundation
 
 import Alamofire
