@@ -16,6 +16,7 @@
 		05C2844D2C29546400655C84 /* LocationAuthorityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2844C2C29546400655C84 /* LocationAuthorityService.swift */; };
 		05CFD8802C53566F00A53449 /* MKCoordinateRegion+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */; };
 		05CFD8862C53753F00A53449 /* Task+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFD8852C53753F00A53449 /* Task+.swift */; };
+		05DC6A932C5A2928005BE3BB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC6A922C5A2928005BE3BB /* SplashView.swift */; };
 		05E606322C576BF100A19AD5 /* SearchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606312C576BF100A19AD5 /* SearchCore.swift */; };
 		05E606352C57701700A19AD5 /* IdentifiedArray+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606342C57701700A19AD5 /* IdentifiedArray+.swift */; };
 		8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D54F2C2059A800681BD4 /* Dictionary+.swift */; };
@@ -85,6 +86,7 @@
 		05C2844C2C29546400655C84 /* LocationAuthorityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorityService.swift; sourceTree = "<group>"; };
 		05CFD87F2C53566F00A53449 /* MKCoordinateRegion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+.swift"; sourceTree = "<group>"; };
 		05CFD8852C53753F00A53449 /* Task+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+.swift"; sourceTree = "<group>"; };
+		05DC6A922C5A2928005BE3BB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		05E606312C576BF100A19AD5 /* SearchCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCore.swift; sourceTree = "<group>"; };
 		05E606342C57701700A19AD5 /* IdentifiedArray+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IdentifiedArray+.swift"; sourceTree = "<group>"; };
 		8D12D54F2C2059A800681BD4 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
@@ -188,9 +190,18 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		05DC6A912C5A291A005BE3BB /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				05DC6A922C5A2928005BE3BB /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		8D03CA622C0F4F90004DEA36 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				05DC6A912C5A291A005BE3BB /* Splash */,
 				8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */,
 				0532399B2C539ADB00A4631D /* MapCore.swift */,
 				8D9614082C0CAC62003B4BA9 /* MapView.swift */,
@@ -627,6 +638,7 @@
 				8D855A4D2C397F9E003CFF0B /* SearchView.swift in Sources */,
 				8D5540552C4E92C200392DAF /* VaccinationCenterDetailEntity.swift in Sources */,
 				8D51222C2C4FE802009402D2 /* MainScreen.swift in Sources */,
+				05DC6A932C5A2928005BE3BB /* SplashView.swift in Sources */,
 				8D9614092C0CAC62003B4BA9 /* MapView.swift in Sources */,
 				8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */,
 				8D855A522C398645003CFF0B /* Image+.swift in Sources */,
