@@ -19,6 +19,7 @@
 		05DC6A932C5A2928005BE3BB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC6A922C5A2928005BE3BB /* SplashView.swift */; };
 		05E606322C576BF100A19AD5 /* SearchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606312C576BF100A19AD5 /* SearchCore.swift */; };
 		05E606352C57701700A19AD5 /* IdentifiedArray+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606342C57701700A19AD5 /* IdentifiedArray+.swift */; };
+		8D100E6F2C5BD0E40016B0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D100E6E2C5BD0E40016B0DA /* LaunchScreen.storyboard */; };
 		8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D54F2C2059A800681BD4 /* Dictionary+.swift */; };
 		8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF93E2C230F18005CC85E /* NetworkManager.swift */; };
 		8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */; };
@@ -89,6 +90,7 @@
 		05DC6A922C5A2928005BE3BB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		05E606312C576BF100A19AD5 /* SearchCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCore.swift; sourceTree = "<group>"; };
 		05E606342C57701700A19AD5 /* IdentifiedArray+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IdentifiedArray+.swift"; sourceTree = "<group>"; };
+		8D100E6E2C5BD0E40016B0DA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D12D54F2C2059A800681BD4 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		8D3FF93E2C230F18005CC85E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				05DC6A922C5A2928005BE3BB /* SplashView.swift */,
+				8D100E6E2C5BD0E40016B0DA /* LaunchScreen.storyboard */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D100E6F2C5BD0E40016B0DA /* LaunchScreen.storyboard in Resources */,
 				8D96140E2C0CAC62003B4BA9 /* Preview Assets.xcassets in Resources */,
 				8D96140B2C0CAC62003B4BA9 /* Assets.xcassets in Resources */,
 			);
@@ -828,7 +832,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = 54V3G99LL8;
+				DEVELOPMENT_TEAM = GMHUACJXLZ;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -868,7 +872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = 54V3G99LL8;
+				DEVELOPMENT_TEAM = GMHUACJXLZ;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
