@@ -5,6 +5,7 @@ import ComposableArchitecture
 
 struct MapView: View {
   @Perception.Bindable private var store: StoreOf<MapCore>
+  @State private var showSplashView = true
   
   @StateObject private var locationService = LocationAuthorityService.shared
   
@@ -32,6 +33,13 @@ struct MapView: View {
           Spacer()
           
           CenterPreview
+        }
+        
+        ZStack {
+          if showSplashView {
+            SplashView(showSplashView: $showSplashView)
+              .transition(.move(edge: .leading))
+          }
         }
       }
       .toast(

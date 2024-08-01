@@ -19,7 +19,6 @@
 		05DC6A932C5A2928005BE3BB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC6A922C5A2928005BE3BB /* SplashView.swift */; };
 		05E606322C576BF100A19AD5 /* SearchCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606312C576BF100A19AD5 /* SearchCore.swift */; };
 		05E606352C57701700A19AD5 /* IdentifiedArray+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E606342C57701700A19AD5 /* IdentifiedArray+.swift */; };
-		05F65A662C5B5C2D0075E7D6 /* SplashCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F65A652C5B5C2D0075E7D6 /* SplashCore.swift */; };
 		8D12D5502C2059A800681BD4 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12D54F2C2059A800681BD4 /* Dictionary+.swift */; };
 		8D3FF93F2C230F18005CC85E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF93E2C230F18005CC85E /* NetworkManager.swift */; };
 		8D3FF9422C2316D9005CC85E /* VaccinationCenterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */; };
@@ -90,7 +89,6 @@
 		05DC6A922C5A2928005BE3BB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		05E606312C576BF100A19AD5 /* SearchCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCore.swift; sourceTree = "<group>"; };
 		05E606342C57701700A19AD5 /* IdentifiedArray+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IdentifiedArray+.swift"; sourceTree = "<group>"; };
-		05F65A652C5B5C2D0075E7D6 /* SplashCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCore.swift; sourceTree = "<group>"; };
 		8D12D54F2C2059A800681BD4 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		8D3FF93E2C230F18005CC85E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8D3FF9412C2316D9005CC85E /* VaccinationCenterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinationCenterRepository.swift; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 		05DC6A912C5A291A005BE3BB /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				05F65A652C5B5C2D0075E7D6 /* SplashCore.swift */,
 				05DC6A922C5A2928005BE3BB /* SplashView.swift */,
 			);
 			path = Splash;
@@ -204,10 +201,10 @@
 		8D03CA622C0F4F90004DEA36 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				05DC6A912C5A291A005BE3BB /* Splash */,
 				8D9614062C0CAC62003B4BA9 /* FindVaccineCenterApp.swift */,
 				0532399B2C539ADB00A4631D /* MapCore.swift */,
 				8D9614082C0CAC62003B4BA9 /* MapView.swift */,
+				05DC6A912C5A291A005BE3BB /* Splash */,
 				8D5122202C4FE542009402D2 /* Coordinator */,
 				8DE763D02C4D2DFE003354C1 /* Component */,
 				05AAE12D2C36956D001846D4 /* Entity */,
@@ -624,7 +621,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05F65A662C5B5C2D0075E7D6 /* SplashCore.swift in Sources */,
 				8D9024572C563D9000D5B89D /* DateFormatter.swift in Sources */,
 				8D56E4222C40148E00A915A4 /* MapAnnotationView.swift in Sources */,
 				8D8F3F3B2C1F29110059C3C0 /* VaccinationAPI.swift in Sources */,
@@ -832,7 +828,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -872,7 +868,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FindVaccineCenter/Preview Content\"";
-				DEVELOPMENT_TEAM = GMHUACJXLZ;
+				DEVELOPMENT_TEAM = 54V3G99LL8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

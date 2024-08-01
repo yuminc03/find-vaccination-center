@@ -3,10 +3,18 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SplashView: View {
-  @Perception.Bindable private var store: StoreOf<SplashCore>
+  @Binding private var showSplashView: Bool
   
-  init(store: StoreOf<SplashCore>) {
-    self.store = store
+  private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+  
+  @State private var loadingText = "Finding an Vaccination Center...".map { String($0) }
+  @State private var showLoadingText = false
+  @State private var timerSeconds = 0
+  @State private var counter = 0
+  @State private var loop = 0
+  
+  init(showSplashView: Binding<Bool>) {
+    self._showSplashView = showSplashView
   }
   
   var body: some View {
@@ -18,14 +26,21 @@ struct SplashView: View {
         loadingSection
       }
       .onAppear {
-        store.send(.toggleShowLoadingText)
-        store.send(._startTimer)
+        showLoadingText.toggle()
       }
-      .onReceive(store.publisher.timerSeconds) { _ in
-        store.send(._startAnimation, animation: .spring)
-      }
-      .onDisappear {
-        store.send(._cancelTimer)
+      .onReceive(timer) { _ in
+        withAnimation(.spring()) {
+          if counter == loadingText.count - 1 {
+            counter = 0
+            loop += 1
+            
+            if loop >= 2 {
+              showSplashView = false
+            }
+          } else {
+            counter += 1
+          }
+        }
       }
     }
   }
@@ -34,13 +49,13 @@ struct SplashView: View {
 private extension SplashView {
   var loadingSection: some View {
     ZStack {
-      if store.showLoadingText {
+      if showLoadingText {
         HStack(spacing: 0) {
-          ForEach(store.loadingText.indices, id: \.self) {
-            Text(store.loadingText[$0])
+          ForEach(loadingText.indices, id: \.self) {
+            Text(loadingText[$0])
               .font(.system(size: 24, weight: .bold))
               .foregroundColor(.blue100)
-              .offset(y: store.counter == $0 ? -5 : 0)
+              .offset(y: counter == $0 ? -5 : 0)
           }
         }
         .transition(.scale.animation(.easeIn))
@@ -50,7 +65,5 @@ private extension SplashView {
 }
 
 #Preview {
-  SplashView(store: .init(initialState: SplashCore.State(showLaunchView: true)) {
-    SplashCore()
-  })
+  SplashView(showSplashView: .constant(true))
 }
