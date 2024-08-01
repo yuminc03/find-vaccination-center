@@ -2,30 +2,6 @@ import SwiftUI
 
 import ComposableArchitecture
 
-@Reducer
-struct SplashCore {
-  struct State: Equatable {
-    var loadingText = "Finding an Vaccination Center...".map { String($0) }
-    var showLoadingText = false
-    var counter = 0
-    var loop = 0
-  }
-  
-  enum Action {
-    
-  }
-  
-  var body: some ReducerOf<Self> {
-    Reduce { state, action in
-      switch action {
-        
-      }
-      
-      return .none
-    }
-  }
-}
-
 struct SplashView: View {
   @Perception.Bindable private var store: StoreOf<SplashCore>
   
@@ -34,12 +10,47 @@ struct SplashView: View {
   }
   
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    WithPerceptionTracking {
+      ZStack {
+        Color.white
+          .ignoresSafeArea()
+        
+        loadingSection
+      }
+      .onAppear {
+        store.send(.toggleShowLoadingText)
+        store.send(._startTimer)
+      }
+      .onReceive(store.publisher.timerSeconds) { _ in
+        store.send(._startAnimation, animation: .spring)
+      }
+      .onDisappear {
+        store.send(._cancelTimer)
+      }
+    }
+  }
+}
+
+private extension SplashView {
+  var loadingSection: some View {
+    ZStack {
+      if store.showLoadingText {
+        HStack(spacing: 0) {
+          ForEach(store.loadingText.indices, id: \.self) {
+            Text(store.loadingText[$0])
+              .font(.system(size: 24, weight: .bold))
+              .foregroundColor(.blue100)
+              .offset(y: store.counter == $0 ? -5 : 0)
+          }
+        }
+        .transition(.scale.animation(.easeIn))
+      }
+    }
   }
 }
 
 #Preview {
-  SplashView(store: .init(initialState: SplashCore.State()) {
+  SplashView(store: .init(initialState: SplashCore.State(showLaunchView: true)) {
     SplashCore()
   })
 }
