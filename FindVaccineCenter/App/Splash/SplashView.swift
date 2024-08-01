@@ -23,6 +23,10 @@ struct SplashView: View {
         Color.white
           .ignoresSafeArea()
         
+        Image(.logoTransparent)
+          .resizable()
+          .frame(width: 77, height: 124)
+        
         loadingSection
       }
       .onAppear {
@@ -55,12 +59,13 @@ private extension SplashView {
             Text(loadingText[$0])
               .font(.system(size: 24, weight: .bold))
               .foregroundColor(.blue100)
-              .offset(y: counter == $0 ? -5 : 0)
+              .offset(y: counter == $0 ? -10 : 0)
           }
         }
         .transition(.scale.animation(.easeIn))
       }
     }
+    .offset(y: 100)
   }
 }
 
